@@ -1,4 +1,4 @@
-<p align="center"><a href="paper/paper.pdf"><img src="paper/figures/fig3_hormuz.png" alt="hormuz-orbital: the Strait of Hormuz gate, queue zones and shipping route" width="100%"></a></p>
+<p align="center"><a href="paper/paper.pdf"><img src="docs/assets/banner.png" alt="hormuz-orbital: the Strait of Hormuz at night, schematic route and transit gate" width="100%"></a></p>
 
 <p align="center">
 <a href="requirements.txt"><img src="https://img.shields.io/badge/python-3-f5a623?style=flat-square&labelColor=0b1020" alt="Python 3"></a>
