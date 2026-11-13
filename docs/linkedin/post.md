@@ -13,8 +13,8 @@ So I wrote a preprint on it: "Orbital Evidence on Chokepoint Risk."
 📈 An event-study and local-projection design that splits a price move into lost barrels and risk premium
 
 Early evidence from six episodes, 2019–2026:
-• In three of them, Brent jumped 7–11 log points on day 0, then gave most of it back
-• Only the 2026 episode, the one where physical flow collapsed, kept climbing: +52.8 by day 20 (placebo p = 0.015)
+• Brent jumped 7–11 log points on day 0 in three of them
+• Only the 2026 episode, the one where physical flow collapsed, kept climbing: +52.8 by day 20 (placebo p = 0.015). In the others the move faded or reversed within a month
 • In calm weeks, small swings in tanker traffic barely move prices
 
 Six events are enough to motivate hypotheses, not to test them. The radar pipeline is built and tested on simulated scenes; processing real Sentinel-1 passes comes next.
