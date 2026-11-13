@@ -1,0 +1,1275 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hormuz Orbital</title>
+<meta name="description" content="Preprint: satellite-observed shipping in the Strait of Hormuz, missile strikes and global energy prices.">
+<meta name="author" content="Thanatchon Chongmankhong">
+<style>
+:root {
+  --paper: #fbfbf9; --ink: #17191c; --ink-2: #4c5058; --rule: #dcdcd6;
+  --accent: #b0560f; --accent-soft: #f6eedd; --plate: #ffffff; --quote: #f3f3ef;
+  --font-body: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-sans: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0b1020; --ink: #e8e9ec; --ink-2: #a6abb4; --rule: #2a3150;
+    --accent: #f5a623; --accent-soft: #2a2414; --plate: #f4f4f2; --quote: #141a2e; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0b1020; --ink: #e8e9ec; --ink-2: #a6abb4; --rule: #2a3150;
+  --accent: #f5a623; --accent-soft: #2a2414; --plate: #f4f4f2; --quote: #141a2e; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.62 var(--font-body); }
+.page { max-width: 46rem; margin: 0 auto; padding: 48px 16px 72px; }
+.bar { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; font: 500 14px var(--font-sans);
+  border-bottom: 1px solid var(--rule); padding-bottom: 14px; margin-bottom: 28px; }
+.bar a { color: var(--accent); text-decoration: none; }
+.bar button { margin-left: auto; font: inherit; background: none; border: 1px solid var(--rule); color: var(--ink-2);
+  border-radius: 6px; padding: 3px 10px; cursor: pointer; }
+h1, h2, h3, h4 { font-weight: 650; line-height: 1.2; text-wrap: balance; }
+h1.title { font-size: clamp(1.7rem, 4.2vw, 2.3rem); margin: 0 0 .4em; }
+.author { color: var(--ink-2); font-family: var(--font-sans); font-size: 15px; margin: 0; }
+h2 { font-size: 1.4rem; margin: 2.2em 0 .5em; } h3 { font-size: 1.1rem; margin: 1.8em 0 .4em; }
+a { color: var(--accent); }
+.abstract { background: var(--quote); border-left: 3px solid var(--accent); padding: 14px 18px; margin: 28px 0; }
+figure { margin: 28px 0; } figure img { width: 100%; height: auto; background: var(--plate); border-radius: 4px; padding: 6px; }
+figcaption { font: 14px/1.5 var(--font-sans); color: var(--ink-2); margin-top: 8px; }
+table { border-collapse: collapse; width: 100%; font: 14px/1.45 var(--font-sans); display: block; overflow-x: auto; margin: 20px 0; }
+th, td { padding: 5px 8px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+thead th { border-bottom: 2px solid var(--ink-2); }
+code { font-family: var(--font-mono); font-size: .9em; }
+math { font-size: 1.05em; } .display { overflow-x: auto; display: block; }
+#refs, .csl-bib-body { font-size: 15px; } .csl-entry { margin-bottom: .6em; }
+.footnotes { font-size: 14px; color: var(--ink-2); border-top: 1px solid var(--rule); margin-top: 40px; }
+</style>
+<script>
+try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+function flip() { const d = document.documentElement, dark = d.dataset.theme === "dark" ||
+  (d.dataset.theme === "auto" && matchMedia("(prefers-color-scheme: dark)").matches);
+  d.dataset.theme = dark ? "light" : "dark"; try { localStorage.setItem("theme", d.dataset.theme); } catch (e) {} }
+</script>
+</head>
+<body>
+<main class="page">
+<nav class="bar"><a href="https://github.com/thanatchon36/hormuz-orbital">GitHub</a><a href="paper.pdf">📄 PDF</a><button onclick="flip()">◐ Theme</button></nav>
+<h1 class="title">Orbital Evidence on Chokepoint Risk:<br />
+<span>Satellite-Observed Shipping in the Strait of Hormuz,<br />
+Missile Strikes, and Global Energy Prices</span></h1>
+<p class="author">Thanatchon Chongmankhong</p>
+<div class="abstract"><strong>Abstract.</strong> <p>Do missile and drone
+strikes move energy prices by taking barrels off the water, or by
+raising a risk premium on barrels that keep flowing? Answering this
+requires observing chokepoint flows independently of the self-reported
+ship-tracking data (AIS) that fail precisely when vessels go dark in
+wartime. This paper sets out a design that builds two measurements from
+open data and links them to prices. The first is a transit index for the
+Strait of Hormuz from Sentinel-1 synthetic-aperture radar, which counts
+steel hulls whether or not they broadcast, converted to flows by
+Little’s law and fused with AIS in a state-space model that estimates
+the share of traffic AIS no longer sees. The second is a geocoded
+strike-exposure index that weights each strike by the energy capacity
+and sea-lane traffic within reach of where it landed. A three-step
+identification strategy, consisting of event studies, local projections
+and an instrumented channel decomposition, separates the physical-flow
+channel from the risk-premium channel. On simulated scenes the detector
+reaches precision and recall of 0.997; on simulated traffic in which AIS
+reports 15% of true transits, AIS alone understates flow by 86% while
+the fused index is within 2%. Preliminary evidence from public data is
+consistent with the physical-flow reading. Across six episodes since
+2019, Brent jumped 7–11% on the first trading day with or without any
+loss of flow, but kept rising only in 2026, when AIS-observed tanker
+transits through the Strait fell from 47.6 to 2.4 per day: a cumulative
+abnormal return of 52.8 log points after 20 trading days (placebo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>0.015</mn></mrow><annotation encoding="application/x-tex">p = 0.015</annotation></semantics></math>),
+against reversals in every other episode. Six events cannot test the
+hypothesis; they motivate the measurement programme that can.</p></div>
+<h1 id="sec:intro">Introduction</h1>
+<p>Roughly a fifth of the world’s oil consumption and a similar share of
+seaborne LNG normally pass through the Strait of Hormuz, a channel whose
+shipping lanes are a few kilometres wide. After 28 February 2026 that
+flow all but stopped. AIS-derived counts from IMF PortWatch <span
+class="citation" data-cites="portwatch">(<a href="#ref-portwatch"
+role="doc-biblioref">International Monetary Fund 2026</a>)</span> show
+tanker transits falling from a mean of 47.6 per day in the preceding
+twelve months to 2.4 per day from March to October 2026, and Brent
+rising from 71.32 USD per barrel on 27 February to 138.21 on 7 April
+<span class="citation" data-cites="eia_spot">(<a href="#ref-eia_spot"
+role="doc-biblioref">U.S. Energy Information Administration
+2026</a>)</span>, a 94% increase in six weeks (<a href="#fig:timeline"
+data-reference-type="ref+label"
+data-reference="fig:timeline">6</a>).</p>
+<p>Yet the same price series contains a puzzle. Between 5 June and 2
+July 2026 Brent fell 30%, from 97.29 to 68.53 USD per barrel, while
+AIS-visible tanker transits stayed below three per day until mid-June
+and only then rose, briefly, to 12–14 per day. Either the market
+anticipated a reopening, or more traffic was already moving than AIS
+recorded. AIS is self-reported: in a conflict zone vessels switch
+transponders off, spoof positions, or lose satellite positioning to
+jamming. The data that measure chokepoint flows are least reliable
+exactly when those flows matter most.</p>
+<p>This paper proposes to resolve the ambiguity with a sensor that does
+not depend on cooperation. Synthetic-aperture radar (SAR) images steel
+hulls day and night, through cloud and dust, regardless of whether a
+ship broadcasts. The European Sentinel-1 constellation <span
+class="citation" data-cites="torres2012">(<a href="#ref-torres2012"
+role="doc-biblioref"><span class="nocase">Torres et al.</span>
+2012</a>)</span> has imaged the Strait every few days since 2014, and
+its archive is free.</p>
+<h4 id="contributions.">Contributions.</h4>
+<p>The design makes three contributions, each corresponding to one paper
+of a three-paper thesis.</p>
+<ol>
+<li><p><strong>A sensor-independent transit index</strong> for the
+world’s most important energy chokepoint, together with an estimated
+<em>dark share</em>, the fraction of traffic that AIS fails to see (<a
+href="#sec:sat" data-reference-type="ref+label"
+data-reference="sec:sat">4</a>).</p></li>
+<li><p><strong>A spatial strike-exposure index</strong> that converts
+event geography into a continuous treatment, separating a strike on a
+refinery from one on a remote air base (<a href="#sec:exposure"
+data-reference-type="ref+label"
+data-reference="sec:exposure">5</a>).</p></li>
+<li><p><strong>A channel decomposition</strong> that separates lost
+barrels from risk premium using flows that are observed rather than
+inferred (<a href="#sec:ident" data-reference-type="ref+label"
+data-reference="sec:ident">6</a>).</p></li>
+</ol>
+<p><a href="#sec:evidence" data-reference-type="ref+Label"
+data-reference="sec:evidence">7</a> reports preliminary evidence from
+public price and transit data, and <a href="#sec:threats"
+data-reference-type="ref+label" data-reference="sec:threats">8</a>
+discusses threats to validity. The code that produces every number and
+figure in this paper is described in <a href="#app:code"
+data-reference-type="ref+label" data-reference="app:code">11</a>.</p>
+<h1 id="sec:lit">Related literature</h1>
+<p>Six literatures each supply one part of the design; none combines
+them.</p>
+<h4 id="oil-shock-identification.">Oil-shock identification.</h4>
+<p>Supply, demand and news shocks have different price and macroeconomic
+effects <span class="citation"
+data-cites="kilian2009 kilianmurphy2014 baumeister2019 kanzig2021">(<a
+href="#ref-kilian2009" role="doc-biblioref">Kilian 2009</a>; <a
+href="#ref-kilianmurphy2014" role="doc-biblioref">Kilian and Murphy
+2014</a>; <a href="#ref-baumeister2019" role="doc-biblioref">Baumeister
+and Hamilton 2019</a>; <a href="#ref-kanzig2021"
+role="doc-biblioref">Känzig 2021</a>)</span>. In this literature shocks
+are inferred from prices, production or announcements; physical
+chokepoint flows are not observed directly.</p>
+<h4 id="geopolitical-risk.">Geopolitical risk.</h4>
+<p>Text-based indices of geopolitical risk move oil prices and
+investment, and threats differ from acts <span class="citation"
+data-cites="caldara2022">(<a href="#ref-caldara2022"
+role="doc-biblioref">Caldara and Iacoviello 2022</a>)</span>. Such
+indices are aspatial: they cannot tell a strike on a processing plant
+from one on an empty air base.</p>
+<h4 id="satellite-data-in-economics-and-finance.">Satellite data in
+economics and finance.</h4>
+<p>Imagery measures activity where official statistics are weak and
+changes how markets price news <span class="citation"
+data-cites="henderson2012 donaldson2016 mukherjee2021">(<a
+href="#ref-henderson2012" role="doc-biblioref">Henderson et al.
+2012</a>; <a href="#ref-donaldson2016" role="doc-biblioref">Donaldson
+and Storeygard 2016</a>; <a href="#ref-mukherjee2021"
+role="doc-biblioref">Mukherjee et al. 2021</a>)</span>. Applications
+have centred on night lights, car parks and storage tanks rather than
+transit under conflict.</p>
+<h4 id="ais-based-trade-monitoring.">AIS-based trade monitoring.</h4>
+<p>Ship-position data nowcast trade and chokepoint transits at daily
+frequency <span class="citation"
+data-cites="cerdeiro2020 arslanalp2021 verschuur2022">(<a
+href="#ref-cerdeiro2020" role="doc-biblioref">Cerdeiro et al. 2020</a>;
+<a href="#ref-arslanalp2021" role="doc-biblioref">Arslanalp et al.
+2021</a>; <a href="#ref-verschuur2022" role="doc-biblioref">Verschuur et
+al. 2022</a>)</span>. Because AIS is self-reported, it degrades under
+jamming and deliberate silence.</p>
+<h4 id="radar-vessel-detection.">Radar vessel detection.</h4>
+<p>Constant-false-alarm-rate detectors applied to Sentinel-1 locate
+vessels at global scale and show that a large share of them do not
+broadcast AIS <span class="citation"
+data-cites="crisp2004 greidanus2017 paolo2024">(<a href="#ref-crisp2004"
+role="doc-biblioref">Crisp 2004</a>; <a href="#ref-greidanus2017"
+role="doc-biblioref">Greidanus et al. 2017</a>; <a href="#ref-paolo2024"
+role="doc-biblioref"><span class="nocase">Paolo et al.</span>
+2024</a>)</span>. These tools were built for fisheries and offshore
+monitoring and have not been linked to commodity prices.</p>
+<h4 id="conflict-events-and-damage-from-space.">Conflict events and
+damage from space.</h4>
+<p>Geocoded event datasets and imagery measure where violence occurs and
+how much it destroys <span class="citation"
+data-cites="raleigh2010 mueller2021">(<a href="#ref-raleigh2010"
+role="doc-biblioref">Raleigh et al. 2010</a>; <a href="#ref-mueller2021"
+role="doc-biblioref">Mueller et al. 2021</a>)</span>, but have not been
+tied to energy-infrastructure exposure or market outcomes.</p>
+<h1 id="sec:data">Study area and data</h1>
+<p>The study area runs from the eastern Mediterranean to the Gulf of
+Oman (30°–62.5° E, 11°–40.5° N). <a href="#fig:region"
+data-reference-type="ref+Label" data-reference="fig:region">1</a> places
+strike sites against energy infrastructure, the three regional
+chokepoints and the pipelines that bypass the Strait. On the
+illustrative reference layer, strikes in 2024 and June 2025 cluster in
+Israel and inland Iran, with South Pars the main exception; the 2026
+sites ring the Gulf coast and sit on terminals, refineries and LNG
+plants (<a href="#fig:gulf" data-reference-type="ref+label"
+data-reference="fig:gulf">2</a>).</p>
+<figure id="fig:region" data-latex-placement="p">
+<img src="figures/fig1_region.png" />
+<figcaption>Strike sites and energy infrastructure, 2019–2026. Solid
+circles are documented strike locations; hollow circles mark 2026 sites
+recalled from open-source reporting and not yet verified. Marker area
+for infrastructure scales with indicative capacity. The inset enlarges
+Israel, where sites are too close to separate at regional scale; the
+framed area is shown in <a href="#fig:gulf"
+data-reference-type="ref+label" data-reference="fig:gulf">2</a>. This
+layer illustrates the mapping workflow only; all estimates use ACLED
+records. Basemap: Natural Earth <span class="citation"
+data-cites="naturalearth">(<a href="#ref-naturalearth"
+role="doc-biblioref">Natural Earth 2026</a>)</span>; boundaries are for
+orientation only.</figcaption>
+</figure>
+<figure id="fig:gulf" data-latex-placement="!tbp">
+<img src="figures/fig2_gulf.png" />
+<figcaption>The Gulf energy belt. Export terminals, processing plants
+and LNG complexes line both shores, and the only sea route out passes
+through the Strait of Hormuz. Dashed lines show the three pipelines that
+bypass it (schematic). The framed area is enlarged in <a
+href="#fig:hormuz" data-reference-type="ref+label"
+data-reference="fig:hormuz">3</a>. Symbols as in <a href="#fig:region"
+data-reference-type="ref+label"
+data-reference="fig:region">1</a>.</figcaption>
+</figure>
+<p><a href="#fig:hormuz" data-reference-type="ref+Label"
+data-reference="fig:hormuz">3</a> shows the counting geometry at the
+Strait. Vessels inside the <em>transit gate</em> are assumed to be under
+way, so their count converts to a flow (<a href="#sec:sat"
+data-reference-type="ref+label" data-reference="sec:sat">4</a>). Vessels
+inside the two <em>queue zones</em> are waiting, so their count is a
+stock that builds when transits stop and drains when they resume. Gate
+and zones are placeholders to be redrawn against an AIS density raster
+before any counting.</p>
+<figure id="fig:hormuz" data-latex-placement="!tbp">
+<img src="figures/fig3_hormuz.png" style="width:86.0%" />
+<figcaption>Counting design at the Strait of Hormuz. Radar detections
+inside the transit gate (56.2°–56.9° E, 26.3°–26.8° N) are converted to
+transits per day; detections in the queue zones measure the stock of
+waiting vessels. The main route crosses the gate for 81.5 km. Gate,
+zones and route are design placeholders, not navigational
+products.</figcaption>
+</figure>
+<p><a href="#tab:data" data-reference-type="ref+Label"
+data-reference="tab:data">1</a> lists the data. Every core input is free
+and open; licensed data enter only for validation and for price
+benchmarks that lack a free daily series. Two snapshots ship with the
+code so that every number in this paper can be reproduced offline: Brent
+and WTI spot prices from the EIA to 3 November 2026 <span
+class="citation" data-cites="eia_spot">(<a href="#ref-eia_spot"
+role="doc-biblioref">U.S. Energy Information Administration
+2026</a>)</span>, and IMF PortWatch daily transit calls for 1 January
+2023 to 25 October 2026 <span class="citation"
+data-cites="portwatch">(<a href="#ref-portwatch"
+role="doc-biblioref">International Monetary Fund 2026</a>)</span>. The
+PortWatch snapshot consists of API responses of 28 October 2026 taken
+from a public replication package and checked row by row against the raw
+responses stored there; the full history from January 2019 should be
+pulled from the IMF before publication.</p>
+<div id="tab:data">
+<table>
+<caption>Data sources. “Free” sources are open or free for research
+use.</caption>
+<thead>
+<tr>
+<th style="text-align: left;">Layer</th>
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: left;">Frequency, access</th>
+<th style="text-align: left;">Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Radar imagery</td>
+<td style="text-align: left;">Sentinel-1 IW GRD, VV and VH, 10 m</td>
+<td style="text-align: left;">Every 2–6 days; free</td>
+<td style="text-align: left;">Vessel detection (core)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Optical imagery</td>
+<td style="text-align: left;">Sentinel-2, 10 m</td>
+<td style="text-align: left;">Every 5 days if cloud-free; free</td>
+<td style="text-align: left;">Count cross-check, vessel type</td>
+</tr>
+<tr>
+<td style="text-align: left;">Vessel detections</td>
+<td style="text-align: left;">Global Fishing Watch SAR detections
+matched to AIS</td>
+<td style="text-align: left;">Per scene; free for research</td>
+<td style="text-align: left;">Detector benchmark</td>
+</tr>
+<tr>
+<td style="text-align: left;">Thermal anomalies</td>
+<td style="text-align: left;">VIIRS active fire and gas flaring</td>
+<td style="text-align: left;">Daily, 375 m; free</td>
+<td style="text-align: left;">Damage verification</td>
+</tr>
+<tr>
+<td style="text-align: left;">Commercial imagery</td>
+<td style="text-align: left;">PlanetScope; ICEYE, Capella or Umbra
+SAR</td>
+<td style="text-align: left;">Daily or tasked; licensed</td>
+<td style="text-align: left;">Time-of-day gaps, validation</td>
+</tr>
+<tr>
+<td style="text-align: left;">AIS transits</td>
+<td style="text-align: left;">IMF PortWatch daily chokepoint calls</td>
+<td style="text-align: left;">Daily since 2019; free</td>
+<td style="text-align: left;">Calibration and benchmark</td>
+</tr>
+<tr>
+<td style="text-align: left;">Strike events</td>
+<td style="text-align: left;">ACLED remote-violence events; UCDP;
+GDELT</td>
+<td style="text-align: left;">Event level; free for research</td>
+<td style="text-align: left;">Treatment</td>
+</tr>
+<tr>
+<td style="text-align: left;">Prices</td>
+<td style="text-align: left;">Brent, WTI (EIA); Dubai, TTF, JKM, futures
+curves</td>
+<td style="text-align: left;">Daily; free or terminal</td>
+<td style="text-align: left;">Outcomes</td>
+</tr>
+<tr>
+<td style="text-align: left;">Freight and risk</td>
+<td style="text-align: left;">Tanker rates; crude volatility index;
+dollar</td>
+<td style="text-align: left;">Daily; licensed or free</td>
+<td style="text-align: left;">Channel markers</td>
+</tr>
+<tr>
+<td style="text-align: left;">Infrastructure</td>
+<td style="text-align: left;">Global Energy Monitor; EIA;
+OpenStreetMap</td>
+<td style="text-align: left;">Static; free</td>
+<td style="text-align: left;">Exposure weights</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="sec:sat">Measuring transits from orbit</h1>
+<h2 id="vessel-detection">Vessel detection</h2>
+<p>Multilooked SAR intensity over homogeneous sea follows a Gamma
+distribution with shape
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>,
+the equivalent number of looks. A pixel with intensity
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is declared a target when it exceeds a multiple of the mean
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>μ</mi><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\hat\mu</annotation></semantics></math>
+of a background ring that surrounds a guard window,
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&gt;</mo><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>L</mi><mo>,</mo><msub><mi>P</mi><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">a</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo><mspace width="0.167em"></mspace><msub><mover><mi>μ</mi><mo accent="true">̂</mo></mover><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">g</mi></mrow></msub><mo>,</mo><mspace width="2.0em"></mspace><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>L</mi><mo>,</mo><msub><mi>P</mi><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">a</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mn>1</mn><mi>L</mi></mfrac><mspace width="0.167em"></mspace><msup><mi>Q</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mspace width="-0.167em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><mi>L</mi><mo>,</mo><msub><mi>P</mi><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">a</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
+  x &gt; t(L, P_{\mathrm{fa}})\,\hat{\mu}_{\mathrm{ring}}, \qquad
+  t(L, P_{\mathrm{fa}}) = \frac{1}{L}\,Q^{-1}\!\left(L, P_{\mathrm{fa}}\right),
+  \label{eq:cfar}
+\end{equation}</annotation></semantics></math> where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>Q</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">Q^{-1}</annotation></semantics></math>
+inverts the regularised upper incomplete gamma function. With
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mn>4.4</mn></mrow><annotation encoding="application/x-tex">L = 4.4</annotation></semantics></math>
+and a design false-alarm rate of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>10</mn><mrow><mi>−</mi><mn>7</mn></mrow></msup><annotation encoding="application/x-tex">10^{-7}</annotation></semantics></math>
+per pixel,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mn>5.65</mn></mrow><annotation encoding="application/x-tex">t = 5.65</annotation></semantics></math>,
+or 7.5 dB above the local mean. Detection runs in the cross-polarised VH
+band, where sea clutter is weakest, with confirmation in VV. Detected
+pixels seed a hysteresis step that grows into neighbouring pixels above
+a looser threshold, recovering whole hulls; detections are then censored
+from the background and the statistics recomputed so that neighbouring
+ships in an anchorage do not mask one another. Land, a 500 m coastal
+buffer and fixed structures (pixels whose median VH over the previous
+year exceeds
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>17</mn></mrow><annotation encoding="application/x-tex">-17</annotation></semantics></math> dB)
+are masked. Objects of 60–480 m length are retained as vessels, and
+those of at least 180 m form a large-tanker class.</p>
+<h2 id="from-snapshot-counts-to-flows">From snapshot counts to
+flows</h2>
+<p>A radar image is a snapshot. If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
+vessels are inside a gate of along-route length
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math>
+that they cross at mean speed
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>v</mi><annotation encoding="application/x-tex">v</annotation></semantics></math>,
+Little’s law <span class="citation" data-cites="little1961">(<a
+href="#ref-little1961" role="doc-biblioref">Little 1961</a>)</span>
+gives the flow and its Poisson sampling error:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>λ</mi><mo accent="true">̂</mo></mover><mo>=</mo><mfrac><mrow><mi>N</mi><mspace width="0.167em"></mspace><mi>v</mi></mrow><mi>G</mi></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mrow><mi mathvariant="normal">Var</mi><mo>&#8289;</mo></mrow><mspace width="-0.167em"></mspace><mrow><mo stretchy="true" form="prefix">[</mo><mi mathvariant="normal">log</mi><mover><mi>λ</mi><mo accent="true">̂</mo></mover><mo stretchy="true" form="postfix">]</mo></mrow><mo>≈</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
+  \hat{\lambda} = \frac{N\,v}{G}, \qquad \operatorname{Var}\!\left[\log\hat{\lambda}\right] \approx \frac{1}{N}.
+  \label{eq:little}
+\end{equation}</annotation></semantics></math> With
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><mn>81.5</mn></mrow><annotation encoding="application/x-tex">G = 81.5</annotation></semantics></math> km,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mo>=</mo><mn>12</mn></mrow><annotation encoding="application/x-tex">v = 12</annotation></semantics></math> knots
+and the calm-period mean of 88.6 transits per day across all vessel
+types, one pass sees 13.5 vessels on average and estimates the flow with
+a 27% standard error; a 200 km gate would reduce it to 17%. A single
+pass therefore cannot detect a 10% change in traffic but cannot miss a
+90% one.</p>
+<h2 id="fusing-radar-with-ais">Fusing radar with AIS</h2>
+<p>Radar passes are irregular and noisy; AIS is daily but under-reports
+when ships go dark. Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mi>t</mi></msub><annotation encoding="application/x-tex">m_t</annotation></semantics></math>
+be the log of the true flow,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>d</mi><mi>t</mi></msub><annotation encoding="application/x-tex">d_t</annotation></semantics></math>
+the log of the share of traffic that AIS still records, and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>
+the log detection efficiency of the radar. The state-space model is
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>m</mi><mi>t</mi></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>m</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>η</mi><mi>t</mi></msub><mo>,</mo></mtd><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>d</mi><mi>t</mi></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>d</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>ζ</mi><mi>t</mi></msub><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><msub><mrow><mi mathvariant="normal">A</mi><mi mathvariant="normal">I</mi><mi mathvariant="normal">S</mi></mrow><mi>t</mi></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>m</mi><mi>t</mi></msub><mo>+</mo><msub><mi>d</mi><mi>t</mi></msub><mo>+</mo><msubsup><mi>ε</mi><mi>t</mi><mi>a</mi></msubsup><mo>,</mo></mtd><mtd columnalign="right" style="text-align: right; padding-right: 0"><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><msub><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">A</mi><mi mathvariant="normal">R</mi></mrow><mi>t</mi></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>m</mi><mi>t</mi></msub><mo>+</mo><mi>c</mi><mo>+</mo><msubsup><mi>ε</mi><mi>t</mi><mi>s</mi></msubsup><mspace width="1.0em"></mspace><mtext mathvariant="normal">(pass days)</mtext><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{equation}
+\begin{aligned}
+  m_t &amp;= m_{t-1} + \eta_t, &amp; d_t &amp;= d_{t-1} + \zeta_t,\\
+  \log \mathrm{AIS}_t &amp;= m_t + d_t + \varepsilon^{a}_t, &amp; \log \mathrm{SAR}_t &amp;= m_t + c + \varepsilon^{s}_t \quad \text{(pass days)}.
+\end{aligned}
+\label{eq:ssm}
+\end{equation}</annotation></semantics></math> Before the conflict,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>d</mi><mi>t</mi></msub><annotation encoding="application/x-tex">d_t</annotation></semantics></math>
+is fixed at zero, so AIS is treated as truth and calibrates
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>.
+From the conflict start, both
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mi>t</mi></msub><annotation encoding="application/x-tex">m_t</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>d</mi><mi>t</mi></msub><annotation encoding="application/x-tex">d_t</annotation></semantics></math>
+receive a one-off break innovation and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>d</mi><mi>t</mi></msub><annotation encoding="application/x-tex">d_t</annotation></semantics></math>
+is free to drift, so radar identifies the true flow and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>−</mo><msup><mi>e</mi><msub><mi>d</mi><mi>t</mi></msub></msup></mrow><annotation encoding="application/x-tex">1 - e^{d_t}</annotation></semantics></math>
+is the estimated dark share. Observation variances follow the Poisson
+approximation evaluated at the <em>predicted</em> count; evaluating them
+at the observed count over-weights high draws and biases the index
+upward. The model is estimated with a Kalman filter and
+Rauch–Tung–Striebel smoother.</p>
+<h2 id="validation-on-simulated-data">Validation on simulated data</h2>
+<p><a href="#fig:methods" data-reference-type="ref+Label"
+data-reference="fig:methods">4</a> shows both components on simulated
+inputs. On synthetic Gamma-clutter scenes with injected targets, the
+detector reaches precision 0.997 and recall 0.997, its empirical
+false-alarm rate matches the design rate, and vessel length is estimated
+with a mean error of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math> m
+and a dispersion of 9 m. In 40 simulated chokepoint histories where true
+flow falls 70% and AIS reports only 15% of what still transits, AIS
+alone understates post-break flow by 86%; the fused index is off by
+1.5%, and its 90% band covers the true flow 95% of the time. When no
+traffic goes dark, the model does not invent any. Real sea clutter is
+rougher than the simulation, so detection thresholds must be tuned on a
+hand-labelled sample of Sentinel-1 scenes before any real count is
+trusted.</p>
+<figure id="fig:methods" data-latex-placement="!tbp">
+<img src="figures/fig7_methods.png" />
+<figcaption>Validation of the measurement pipeline on <em>simulated</em>
+data. (A) The CFAR detector on a synthetic scene with Gamma sea clutter,
+a masked island and injected vessels. (B) Fusion of irregular radar
+snapshots with daily AIS counts. After the break, AIS records 15% of the
+vessels that still transit; the fused index tracks the true flow, and
+the gap between them is the estimated dark share.</figcaption>
+</figure>
+<h1 id="sec:exposure">Strike geography and exposure</h1>
+<p>Strikes are ACLED events of type <em>Explosions/Remote violence</em>
+with sub-types <em>Shelling/artillery/missile attack</em> and
+<em>Air/drone strike</em> in thirteen countries from Lebanon to Oman
+<span class="citation" data-cites="raleigh2010">(<a
+href="#ref-raleigh2010" role="doc-biblioref">Raleigh et al.
+2010</a>)</span>. Events located only to a region are dropped; UCDP and
+GDELT serve as cross-checks, and news time stamps assign each event to
+the trading day on which markets could first react. For strike
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>
+at location
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>s</mi><mi>i</mi></msub><annotation encoding="application/x-tex">s_i</annotation></semantics></math>,
+energy assets
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>
+of capacity
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>c</mi><mi>j</mi></msub><annotation encoding="application/x-tex">c_j</annotation></semantics></math>
+(million barrels of oil equivalent per day) at locations
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>a</mi><mi>j</mi></msub><annotation encoding="application/x-tex">a_j</annotation></semantics></math>,
+and the main shipping route
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>,
+exposure is
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mi>i</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>c</mi><mi>j</mi></msub><mrow><mi mathvariant="normal">exp</mi><mo>&#8289;</mo></mrow><mspace width="-0.167em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><mi>−</mi><mfrac><mrow><mi>d</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mi>i</mi></msub><mo>,</mo><msub><mi>a</mi><mi>j</mi></msub><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow><mrow><mn>2</mn><msup><mi>h</mi><mn>2</mn></msup></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi>c</mi><mi>R</mi></msub><mrow><mi mathvariant="normal">exp</mi><mo>&#8289;</mo></mrow><mspace width="-0.167em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><mi>−</mi><mfrac><mrow><mi>d</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mi>i</mi></msub><mo>,</mo><mi>R</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow><mrow><mn>2</mn><msubsup><mi>h</mi><mi>R</mi><mn>2</mn></msubsup></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
+  E_i = \sum_j c_j \exp\!\left(-\frac{d(s_i,a_j)^2}{2h^2}\right) + c_R \exp\!\left(-\frac{d(s_i,R)^2}{2h_R^2}\right),
+  \label{eq:exposure}
+\end{equation}</annotation></semantics></math> with great-circle
+distance
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>,
+baseline bandwidths
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>=</mo><mn>25</mn></mrow><annotation encoding="application/x-tex">h = 25</annotation></semantics></math> km
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mi>R</mi></msub><mo>=</mo><mn>40</mn></mrow><annotation encoding="application/x-tex">h_R = 40</annotation></semantics></math> km,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>R</mi></msub><mo>=</mo><mn>20</mn></mrow><annotation encoding="application/x-tex">c_R = 20</annotation></semantics></math>,
+the approximate flow through the Strait. The daily shock is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>t</mi></msub><mo>=</mo><msub><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>t</mi></mrow></msub><msub><mi>w</mi><mi>i</mi></msub><msub><mi>E</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">S_t = \sum_{i \in t} w_i E_i</annotation></semantics></math>
+with optional severity weights
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>w</mi><mi>i</mi></msub><annotation encoding="application/x-tex">w_i</annotation></semantics></math>.
+<a href="#tab:exposure" data-reference-type="ref+Label"
+data-reference="tab:exposure">2</a> shows the ordering the index
+produces on documented sites.</p>
+<div id="tab:exposure">
+<table>
+<caption>Exposure index on documented strike sites. Capacities are
+indicative placeholders; read the ordering rather than the
+decimals.</caption>
+<thead>
+<tr>
+<th style="text-align: left;">Strike site</th>
+<th style="text-align: left;">Date</th>
+<th
+style="text-align: left;"><span><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>E</mi><mi>i</mi></msub><annotation encoding="application/x-tex">E_i</annotation></semantics></math>
+(mboe/d)</span></th>
+<th style="text-align: left;">Driven by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tankers, Gulf of Oman</td>
+<td style="text-align: left;">13 Jun 2019</td>
+<td style="text-align: left;">20.1</td>
+<td style="text-align: left;">On the shipping route (0.9 km)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Abqaiq</td>
+<td style="text-align: left;">14 Sep 2019</td>
+<td style="text-align: left;">7.0</td>
+<td style="text-align: left;">Oil processing plant</td>
+</tr>
+<tr>
+<td style="text-align: left;">South Pars, Asaluyeh</td>
+<td style="text-align: left;">14 Jun 2025</td>
+<td style="text-align: left;">4.0</td>
+<td style="text-align: left;">Gas processing</td>
+</tr>
+<tr>
+<td style="text-align: left;">Fujairah anchorage</td>
+<td style="text-align: left;">12 May 2019</td>
+<td style="text-align: left;">2.7</td>
+<td style="text-align: left;">Terminal 10 km away; route 94 km</td>
+</tr>
+<tr>
+<td style="text-align: left;">Haifa refinery</td>
+<td style="text-align: left;">15 Jun 2025</td>
+<td style="text-align: left;">0.3</td>
+<td style="text-align: left;">Refinery</td>
+</tr>
+<tr>
+<td style="text-align: left;">Al Udeid air base</td>
+<td style="text-align: left;">23 Jun 2025</td>
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Nearest plant 29 km away</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nevatim air base</td>
+<td style="text-align: left;">14 Apr 2024</td>
+<td style="text-align: left;">0.0</td>
+<td style="text-align: left;">No energy asset within reach</td>
+</tr>
+<tr>
+<td style="text-align: left;">Natanz</td>
+<td style="text-align: left;">13 Jun 2025</td>
+<td style="text-align: left;">0.0</td>
+<td style="text-align: left;">No energy asset within reach</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Note.</em> Exposure is not damage: a strike that hits a refinery
+and one intercepted above it score the same. Damage is flagged
+separately from VIIRS thermal anomalies within 2 km and 48 hours, burn
+scars in the next cloud-free Sentinel-2 image, and loss of Sentinel-1
+coherence over the facility footprint. Bandwidths and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>c</mi><mi>R</mi></msub><annotation encoding="application/x-tex">c_R</annotation></semantics></math>
+are set on a pre-specified grid and are never chosen by looking at price
+responses.</p>
+<h1 id="sec:ident">Identification</h1>
+<p><a href="#fig:dag" data-reference-type="ref+Label"
+data-reference="fig:dag">5</a> summarises the strategy. A strike can
+raise prices by removing flow (the path through
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>φ</mi><annotation encoding="application/x-tex">\varphi</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math>)
+or by raising the premium for bearing risk on flow that continues (the
+direct path
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>δ</mi><annotation encoding="application/x-tex">\delta</annotation></semantics></math>).
+Satellites observe the first path; the second is recovered as the
+remainder.</p>
+<figure id="fig:dag" data-latex-placement="!tbp">
+<p><em>[Diagram: see the PDF version.]</em></p>
+<figcaption>Two channels from strike to price. The highlighted node is
+what the thesis measures from orbit. The physical channel is the product
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mi>θ</mi></mrow><annotation encoding="application/x-tex">\varphi\theta</annotation></semantics></math>;
+the risk-premium channel is the total response minus
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mi>θ</mi></mrow><annotation encoding="application/x-tex">\varphi\theta</annotation></semantics></math>.</figcaption>
+</figure>
+<h4 id="step-1-event-study.">Step 1: event study.</h4>
+<p>With
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>r</mi><mi>t</mi></msub><annotation encoding="application/x-tex">r_t</annotation></semantics></math>
+the daily log return in percent, abnormal returns are measured against
+the mean over trading days
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>130</mn></mrow><annotation encoding="application/x-tex">-130</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>11</mn></mrow><annotation encoding="application/x-tex">-11</annotation></semantics></math>
+<span class="citation" data-cites="mackinlay1997">(<a
+href="#ref-mackinlay1997" role="doc-biblioref">MacKinlay
+1997</a>)</span>:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msub><mi>R</mi><mi>t</mi></msub><mo>=</mo><msub><mi>r</mi><mi>t</mi></msub><mo>−</mo><msub><mover><mi>r</mi><mo accent="true">‾</mo></mover><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">t</mi></mrow></msub><mo>,</mo><mspace width="2.0em"></mspace><mi>C</mi><mi>A</mi><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>t</mi><mo>=</mo><mi>a</mi></mrow><mi>b</mi></munderover><mi>A</mi><msub><mi>R</mi><mi>t</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
+  AR_t = r_t - \bar{r}_{\mathrm{est}}, \qquad CAR(a,b) = \sum_{t=a}^{b} AR_t .
+\end{equation}</annotation></semantics></math> Day 0 is the first close
+after the event, so weekend strikes map to Monday. Each event receives a
+Student-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value
+from its estimation window and a placebo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value:
+the share of about 2,600 non-event trading days since 2015 with a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>C</mi><mi>A</mi><mi>R</mi><mo stretchy="false" form="prefix">|</mo></mrow><annotation encoding="application/x-tex">|CAR|</annotation></semantics></math>
+at least as large. Every event is reported individually because events
+are few.</p>
+<h4 id="step-2-dose-and-dynamics.">Step 2: dose and dynamics.</h4>
+<p>A cross-section relates abnormal returns to exposure, verified damage
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>D</mi><mi>i</mi></msub><annotation encoding="application/x-tex">D_i</annotation></semantics></math>
+and controls
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>X</mi><mi>i</mi></msub><annotation encoding="application/x-tex">X_i</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>A</mi><msub><mi>R</mi><mi>i</mi></msub><mo>=</mo><msub><mi>γ</mi><mn>0</mn></msub><mo>+</mo><msub><mi>γ</mi><mn>1</mn></msub><msub><mi>E</mi><mi>i</mi></msub><mo>+</mo><msub><mi>γ</mi><mn>2</mn></msub><msub><mi>D</mi><mi>i</mi></msub><mo>+</mo><msub><mi>γ</mi><msup><mn>3</mn><mo>′</mo></msup></msub><msub><mi>X</mi><mi>i</mi></msub><mo>+</mo><msub><mi>u</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">CAR_i = \gamma_0 + \gamma_1 E_i + \gamma_2 D_i + \gamma_3&#39; X_i + u_i</annotation></semantics></math>.
+Local projections <span class="citation" data-cites="jorda2005">(<a
+href="#ref-jorda2005" role="doc-biblioref">Jordà 2005</a>)</span> trace
+the response of each price
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+(in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mo>×</mo><mi mathvariant="normal">log</mi></mrow><annotation encoding="application/x-tex">100\times\log</annotation></semantics></math>)
+to the exposure shock:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mrow><mi>t</mi><mo>+</mo><mi>h</mi></mrow></msub><mo>−</mo><msub><mi>y</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>α</mi><mi>h</mi></msub><mo>+</mo><msub><mi>β</mi><mi>h</mi></msub><msub><mi>S</mi><mi>t</mi></msub><mo>+</mo><munderover><mo>∑</mo><mrow><mi>l</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><msub><mi mathvariant="normal">Γ</mi><msup><mrow><mi>h</mi><mo>,</mo><mi>l</mi></mrow><mo>′</mo></msup></msub><msub><mi>W</mi><mrow><mi>t</mi><mo>−</mo><mi>l</mi></mrow></msub><mo>+</mo><msub><mi>e</mi><mrow><mi>t</mi><mo>+</mo><mi>h</mi></mrow></msub><mo>,</mo><mspace width="2.0em"></mspace><mi>h</mi><mo>=</mo><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>H</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
+  y_{t+h} - y_{t-1} = \alpha_h + \beta_h S_t + \sum_{l=1}^{p} \Gamma_{h,l}&#39; W_{t-l} + e_{t+h}, \qquad h = 0,\dots,H,
+  
+\end{equation}</annotation></semantics></math> where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>W</mi><annotation encoding="application/x-tex">W</annotation></semantics></math>
+contains lagged returns, the shock, the flow index, the geopolitical
+risk index <span class="citation" data-cites="caldara2022">(<a
+href="#ref-caldara2022" role="doc-biblioref">Caldara and Iacoviello
+2022</a>)</span>, the dollar and implied volatility. Inference uses
+Newey–West errors, with lag-augmented robust errors as a check <span
+class="citation" data-cites="montiel2021">(<a href="#ref-montiel2021"
+role="doc-biblioref">Montiel Olea and Plagborg-Møller 2021</a>)</span>.
+In 200 Monte Carlo replications of a known autoregressive response, the
+estimator’s bias is below 0.012 at every horizon and its nominal 90%
+intervals cover the truth 88–95% of the time.</p>
+<h4 id="step-3-channel-decomposition.">Step 3: channel
+decomposition.</h4>
+<p>The total response splits into a physical and a risk-premium part,
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><munder><msub><mi>β</mi><mi>h</mi></msub><mo accent="true">⏟</mo></munder><mtext mathvariant="normal">total</mtext></munder><mo>=</mo><munder><munder><msub><mi>δ</mi><mi>h</mi></msub><mo accent="true">⏟</mo></munder><mtext mathvariant="normal">risk premium</mtext></munder><mo>+</mo><munder><munder><mrow><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi>h</mi></munderover><mi mathvariant="normal">Δ</mi><msub><mi>φ</mi><mi>k</mi></msub><mspace width="0.167em"></mspace><msub><mi>θ</mi><mrow><mi>h</mi><mo>−</mo><mi>k</mi></mrow></msub></mrow><mo accent="true">⏟</mo></munder><mtext mathvariant="normal">physical flow</mtext></munder><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
+  \underbrace{\beta_h}_{\text{total}} = \underbrace{\delta_h}_{\text{risk premium}} + \underbrace{\textstyle\sum_{k=0}^{h} \Delta\varphi_k\,\theta_{h-k}}_{\text{physical flow}} .
+  \label{eq:decomp}
+\end{equation}</annotation></semantics></math> The flow response
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>φ</mi><annotation encoding="application/x-tex">\varphi</annotation></semantics></math>
+comes from the local-projection equation with the satellite flow index
+as the outcome. The price response to lost flow,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math>,
+is identified with external instruments <span class="citation"
+data-cites="stockwatson2018">(<a href="#ref-stockwatson2018"
+role="doc-biblioref">Stock and Watson 2018</a>)</span>: flow
+disturbances that carry no war news, such as fog, storms and scheduled
+terminal outages. Asset prices offer an instrument-free cross-check,
+because the two channels load differently on them: physical shortage
+steepens prompt futures spreads, lifts tanker freight and widens the
+premium of seaborne over landlocked crude, whereas pure risk raises
+option-implied volatility.</p>
+<h4 id="hypotheses.">Hypotheses.</h4>
+<p><a href="#tab:hyp" data-reference-type="ref+Label"
+data-reference="tab:hyp">3</a> states five testable hypotheses with the
+result that would falsify each.</p>
+<div id="tab:hyp">
+<table>
+<caption>Hypotheses and falsification criteria.</caption>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Hypothesis</th>
+<th style="text-align: left;">Test</th>
+<th style="text-align: left;">Falsified if</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">H1</td>
+<td style="text-align: left;">The radar index tracks AIS before 28 Feb
+2026 and exceeds it afterwards</td>
+<td style="text-align: left;">Weekly correlation before; radar minus AIS
+after</td>
+<td style="text-align: left;">Correlation
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mn>0.8</mn></mrow><annotation encoding="application/x-tex">&lt; 0.8</annotation></semantics></math>
+before, or no positive gap after</td>
+</tr>
+<tr>
+<td style="text-align: left;">H2</td>
+<td style="text-align: left;">Abnormal returns rise with strike
+exposure</td>
+<td style="text-align: left;">Cross-section of CAR on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>E</mi><mi>i</mi></msub><annotation encoding="application/x-tex">E_i</annotation></semantics></math>,
+permutation inference</td>
+<td style="text-align: left;">Slope zero or negative</td>
+</tr>
+<tr>
+<td style="text-align: left;">H3</td>
+<td style="text-align: left;">Price effects without observed flow loss
+revert within 10 trading days; those with flow loss do not</td>
+<td style="text-align: left;">Local projections split by flow
+response</td>
+<td style="text-align: left;">Both groups persist, or both revert</td>
+</tr>
+<tr>
+<td style="text-align: left;">H4</td>
+<td style="text-align: left;">Responses order Dubai/Oman
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>≥</mo><annotation encoding="application/x-tex">\geq</annotation></semantics></math>
+Brent
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>&gt;</mo><annotation encoding="application/x-tex">&gt;</annotation></semantics></math>
+WTI; LNG reacts to strikes on gas assets</td>
+<td style="text-align: left;">Panel event study across benchmarks</td>
+<td style="text-align: left;">WTI responds as much as Dubai/Oman</td>
+</tr>
+<tr>
+<td style="text-align: left;">H5</td>
+<td style="text-align: left;">The radar–AIS gap predicts freight and
+prompt spreads beyond AIS</td>
+<td style="text-align: left;">Predictive regressions, out-of-sample
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>R</mi><mn>2</mn></msup><annotation encoding="application/x-tex">R^2</annotation></semantics></math></td>
+<td style="text-align: left;">No incremental predictive power</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="sec:evidence">Preliminary evidence</h1>
+<p>On public data available today, only the episode that stopped the
+tankers produced a lasting rise in Brent. All figures in this section
+are computed from EIA prices and IMF PortWatch transits; nothing is
+simulated.</p>
+<figure id="fig:timeline" data-latex-placement="!tbp">
+<img src="figures/fig4_timeline.png" />
+<figcaption>Hormuz tanker transits and Brent, January 2023 to November
+2026. Dashed lines mark the onsets of four Israel–Iran episodes; the
+shaded period begins on 28 February 2026. In (A) the thin line is daily
+and the thick line a 7-day centred mean.</figcaption>
+</figure>
+<p><a href="#fig:timeline" data-reference-type="ref+Label"
+data-reference="fig:timeline">6</a> shows the two series. Transits
+fluctuate between 30 and 70 tankers a day through 2023–2025 with no
+visible response to the 2024 and June 2025 exchanges, then collapse at
+the end of February 2026. Brent’s response mirrors that asymmetry.</p>
+<figure id="fig:es" data-latex-placement="!tbp">
+<img src="figures/fig5_event_study.png" />
+<figcaption>Cumulative abnormal returns of Brent around six episode
+onsets. The grey band is the 5th–95th percentile range of the same
+statistic on about 2,600 non-event trading days since 2015.
+Constant-mean model with an estimation window of trading days
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>130</mn></mrow><annotation encoding="application/x-tex">-130</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>11</mn></mrow><annotation encoding="application/x-tex">-11</annotation></semantics></math>.</figcaption>
+</figure>
+<p><a href="#fig:es" data-reference-type="ref+Label"
+data-reference="fig:es">7</a> and <a href="#fig:episodes"
+data-reference-type="ref+Label" data-reference="fig:episodes">8</a> and
+<a href="#tab:es" data-reference-type="ref+label"
+data-reference="tab:es">4</a> report the event study. Three findings
+stand out.</p>
+<ul>
+<li><p><strong>Day-0 jumps do not discriminate.</strong> Brent rose
+11.1, 7.2 and 7.9 log points on the first trading day after Abqaiq
+(2019), June 2025 and the 2026 war; all three are significant against
+placebo days. Only one involved any loss of flow.</p></li>
+<li><p><strong>Persistence does.</strong> Ten trading days later, Abqaiq
+and June 2025 were within one point of zero. The 2026 episode stood at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>+</mi><mn>34.4</mn></mrow><annotation encoding="application/x-tex">+34.4</annotation></semantics></math>
+(placebo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>0.014</mn></mrow><annotation encoding="application/x-tex">p = 0.014</annotation></semantics></math>)
+and reached
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>+</mi><mn>52.8</mn></mrow><annotation encoding="application/x-tex">+52.8</annotation></semantics></math>
+by day 20
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>0.015</mn></mrow><annotation encoding="application/x-tex">p = 0.015</annotation></semantics></math>),
+a 70% rise in price.</p></li>
+<li><p><strong>Flows moved only once.</strong> First-week transit
+changes of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>5</mn></mrow><annotation encoding="application/x-tex">-5</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>13</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">-13\%</annotation></semantics></math>
+in 2024 and 2025 lie within the calm-period noise band of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>±</mi><mn>23</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">\pm23\%</annotation></semantics></math>;
+the 2026 fall of 97% does not. The premium of Brent over WTI widened by
+12.83 USD in 2026 and by less than 1 USD, or narrowed, in every other
+episode.</p></li>
+</ul>
+<figure id="fig:episodes" data-latex-placement="!tbp">
+<img src="figures/fig6_episodes.png" />
+<figcaption>Episode summary. (A) Brent’s day-0 abnormal return (open
+circle) against its cumulative abnormal return after 20 trading days
+(filled circle), with placebo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values.
+(B) Change in mean daily tanker transits in the week after onset
+relative to days
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>35</mn></mrow><annotation encoding="application/x-tex">-35</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>8</mn></mrow><annotation encoding="application/x-tex">-8</annotation></semantics></math>.
+The grey band is the 5th–95th percentile of the same statistic over the
+calm period.</figcaption>
+</figure>
+<div id="tab:es">
+<table>
+<caption>Brent abnormal returns and Hormuz transit changes by
+episode.</caption>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+<th colspan="3" style="text-align: center;">Brent CAR (log points,
+%)</th>
+<th style="text-align: left;"><span>Transits</span></th>
+<th style="text-align: left;"><span>Brent–WTI</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span>3-5</span> Episode</td>
+<td style="text-align: left;">Day 0</td>
+<td style="text-align: left;"><span>Day 0</span></td>
+<td style="text-align: left;"><span>Day 20</span></td>
+<td
+style="text-align: left;"><span><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>,
+day 20</span></td>
+<td style="text-align: left;"><span>wk 1 (%)</span></td>
+<td
+style="text-align: left;"><span><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">Δ</mi><annotation encoding="application/x-tex">\Delta</annotation></semantics></math>
+USD</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">2026 war</td>
+<td style="text-align: left;">2 Mar 2026</td>
+<td style="text-align: left;">7.9</td>
+<td style="text-align: left;">52.8</td>
+<td style="text-align: left;">0.015</td>
+<td style="text-align: left;">-96.6</td>
+<td style="text-align: left;">12.83</td>
+</tr>
+<tr>
+<td style="text-align: left;">June 2025 war</td>
+<td style="text-align: left;">13 Jun 2025</td>
+<td style="text-align: left;">7.2</td>
+<td style="text-align: left;">4.3</td>
+<td style="text-align: left;">0.718</td>
+<td style="text-align: left;">-5.1</td>
+<td style="text-align: left;">0.40</td>
+</tr>
+<tr>
+<td style="text-align: left;">Iran’s 2nd attack on Israel</td>
+<td style="text-align: left;">1 Oct 2024</td>
+<td style="text-align: left;">4.1</td>
+<td style="text-align: left;">0.9</td>
+<td style="text-align: left;">0.946</td>
+<td style="text-align: left;">-12.8</td>
+<td style="text-align: left;">0.70</td>
+</tr>
+<tr>
+<td style="text-align: left;">Iran’s 1st attack on Israel</td>
+<td style="text-align: left;">15 Apr 2024</td>
+<td style="text-align: left;">-2.5</td>
+<td style="text-align: left;">-13.4</td>
+<td style="text-align: left;">0.247</td>
+<td style="text-align: left;">-7.0</td>
+<td style="text-align: left;">-5.28</td>
+</tr>
+<tr>
+<td style="text-align: left;">Soleimani; Ain al-Asad</td>
+<td style="text-align: left;">3 Jan 2020</td>
+<td style="text-align: left;">2.9</td>
+<td style="text-align: left;">-16.6</td>
+<td style="text-align: left;">0.158</td>
+<td style="text-align: left;"><span>–</span></td>
+<td style="text-align: left;">-1.94</td>
+</tr>
+<tr>
+<td style="text-align: left;">Abqaiq and Khurais</td>
+<td style="text-align: left;">16 Sep 2019</td>
+<td style="text-align: left;">11.1</td>
+<td style="text-align: left;">-2.7</td>
+<td style="text-align: left;">0.829</td>
+<td style="text-align: left;"><span>–</span></td>
+<td style="text-align: left;">-1.25</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Notes.</em>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>
+is the placebo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value.
+Transits: change in mean daily tanker transits, days
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>+</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">+1</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>+</mi><mn>7</mn></mrow><annotation encoding="application/x-tex">+7</annotation></semantics></math>
+against days
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>35</mn></mrow><annotation encoding="application/x-tex">-35</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>8</mn></mrow><annotation encoding="application/x-tex">-8</annotation></semantics></math>;
+dashes mark episodes before the PortWatch snapshot. Brent–WTI: change in
+the spot spread from day
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math>
+to day
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>+</mi><mn>20</mn></mrow><annotation encoding="application/x-tex">+20</annotation></semantics></math>.
+The January 2020 day-20 figure also absorbs early pandemic news.</p>
+<p>Two further results frame the identification problem. First, ordinary
+transit noise carries no price signal: over 164 calm weeks, a 10% fall
+in weekly tanker transits is followed by a contemporaneous Brent change
+of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>+</mi><mn>0.14</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">+0.14\%</annotation></semantics></math>
+(90% interval
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>0.28</mn></mrow><annotation encoding="application/x-tex">-0.28</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>+</mi><mn>0.56</mn></mrow><annotation encoding="application/x-tex">+0.56</annotation></semantics></math>),
+and the correlation of weekly changes is 0.003. Identification must
+therefore come from disruptions, not day-to-day variation. Second,
+within the 34 weeks of the closure, Brent and tanker transits are
+negatively correlated in levels
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>0.61</mn></mrow><annotation encoding="application/x-tex">-0.61</annotation></semantics></math>),
+and in June 2026 the price fall began about two weeks before the brief
+recovery in AIS-visible transits. Transits then fell back below three
+per day by late July, and Brent rose again, to 135.51 on 2 October.</p>
+<p>These patterns are what H3 predicts, but six events, one with flow
+loss, test nothing. The flows are AIS-based, the very measure the design
+treats as unreliable in conflict; whether the June price fall
+anticipated a reopening or reflected dark traffic already under way is
+the question the radar index is built to answer.</p>
+<h1 id="sec:threats">Threats to validity</h1>
+<p><a href="#tab:threats" data-reference-type="ref+Label"
+data-reference="tab:threats">5</a> lists the principal threats and
+responses. Three deserve emphasis. Sentinel-1 passes at fixed local
+times near dawn and dusk, so convoys timed to daylight could be missed;
+mid-morning optical counts and tasked commercial radar address this. The
+calibration treats pre-war AIS as complete, so chronic dark traffic
+would bias it; results are reported under an assumed 5–15% pre-war dark
+share. And one episode dominates the sample, so every specification is
+reported with placebo inference and leave-one-episode-out estimates.</p>
+<div id="tab:threats">
+<table>
+<caption>Threats to validity and responses.</caption>
+<thead>
+<tr>
+<th style="text-align: left;">Threat</th>
+<th style="text-align: left;">Why it matters</th>
+<th style="text-align: left;">Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Fixed overpass times</td>
+<td style="text-align: left;">Sentinel-1 images near dawn and dusk;
+daylight convoys missed</td>
+<td style="text-align: left;">Sentinel-2 and PlanetScope counts; tasked
+commercial SAR</td>
+</tr>
+<tr>
+<td style="text-align: left;">Revisit gaps</td>
+<td style="text-align: left;">2–6 days between passes hide short
+disruptions</td>
+<td style="text-align: left;">State-space fusion; weekly index as the
+headline</td>
+</tr>
+<tr>
+<td style="text-align: left;">False alarms</td>
+<td style="text-align: left;">Platforms, islets, wind fronts and azimuth
+ghosts mimic vessels</td>
+<td style="text-align: left;">Static mask, length limits, VV
+confirmation, labelled sample</td>
+</tr>
+<tr>
+<td style="text-align: left;">Vessel type</td>
+<td style="text-align: left;">10 m radar cannot tell a tanker from a
+bulk carrier</td>
+<td style="text-align: left;">All-vessel and large-vessel indices;
+optical classification</td>
+</tr>
+<tr>
+<td style="text-align: left;">Speed assumption</td>
+<td style="text-align: left;">Escorted or slow convoys break the
+count-to-flow conversion</td>
+<td style="text-align: left;">Wake-based speeds; queue stocks as a
+second signal</td>
+</tr>
+<tr>
+<td style="text-align: left;">Dominant episode</td>
+<td style="text-align: left;">Pooled estimates reflect 2026 alone</td>
+<td style="text-align: left;">Placebo inference; leave-one-out; every
+event reported</td>
+</tr>
+<tr>
+<td style="text-align: left;">Confounding news</td>
+<td style="text-align: left;">OPEC decisions, stock releases and
+ceasefire talks coincide with strikes</td>
+<td style="text-align: left;">Narrow windows; intraday futures; drop
+overlapping days</td>
+</tr>
+<tr>
+<td style="text-align: left;">Event-data bias</td>
+<td style="text-align: left;">Coverage and precision vary by country and
+period</td>
+<td style="text-align: left;">Cross-source agreement; geo-precision
+filter</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="sec:ethics">Ethics, data availability and limitations</h1>
+<h4 id="dual-use.">Dual use.</h4>
+<p>Counting ships in a war zone could help someone target them. The
+project therefore releases only aggregate counts and indices, never
+vessel-level positions, tracks or identities, and nothing less than 30
+days after the pass it describes. Strike records come only from
+published event datasets.</p>
+<h4 id="neutrality.">Neutrality.</h4>
+<p>Attribution fields repeat what each source reports, including where
+claims are disputed. Place names and boundaries follow Natural Earth and
+imply no position on any territorial question.</p>
+<h4 id="limitations-of-this-version.">Limitations of this version.</h4>
+<p>No Sentinel-1 scene has yet been processed: the detector and fusion
+model are validated on simulated data only, and the Earth Engine
+pipeline has not been executed. The strike layer in <a
+href="#fig:region" data-reference-type="ref+label"
+data-reference="fig:region">1</a> and <a href="#fig:gulf"
+data-reference-type="ref+label" data-reference="fig:gulf">2</a> and <a
+href="#fig:hormuz" data-reference-type="ref+label"
+data-reference="fig:hormuz">3</a> is an illustrative reference compiled
+by the author; its 2026 sites are unverified, and the analysis layer
+will be built from ACLED. Infrastructure capacities are indicative and
+will be replaced from Global Energy Monitor and EIA records. The
+preliminary evidence rests on AIS counts.</p>
+<h4 id="data-and-code.">Data and code.</h4>
+<p>Code, configuration, data snapshots and the scripts that regenerate
+every table and figure are available from the author as the
+<code>hormuz-orbital</code> repository (<a href="#app:code"
+data-reference-type="ref+label" data-reference="app:code">11</a>). ACLED
+records are not redistributed.</p>
+<h1 id="sec:conclusion">Conclusion</h1>
+<p>Chokepoint risk is usually measured from prices and words. This
+design measures it from orbit, by counting the ships themselves. Public
+data already show that the one recent episode in which tankers stopped
+moving is the one in which oil prices stayed high, while strikes that
+left traffic intact produced jumps that faded within two weeks. A
+radar-based transit index, an exposure-weighted strike treatment and an
+instrumented decomposition can turn that pattern into an estimate of how
+much of a war’s price premium is barrels lost and how much is fear.</p>
+<h1 id="app:code">Code and reproducibility</h1>
+<p>The repository rebuilds every table and figure in this paper with one
+command and passes 14 unit tests. <a href="#tab:code"
+data-reference-type="ref+Label" data-reference="tab:code">6</a> lists
+its components and their status.</p>
+<div id="tab:code">
+<table>
+<caption>Repository components.</caption>
+<thead>
+<tr>
+<th style="text-align: left;">File</th>
+<th style="text-align: left;">Function</th>
+<th style="text-align: left;">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>s1_cfar.py</code></td>
+<td style="text-align: left;">CFAR detector, object measurement,
+synthetic scenes</td>
+<td style="text-align: left;">Tested on simulated scenes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>s1_gee_pipeline.py</code></td>
+<td style="text-align: left;">Earth Engine scene selection, masking,
+detection, export</td>
+<td style="text-align: left;">Not run (needs an account)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>flow_index.py</code></td>
+<td style="text-align: left;">Little’s law, radar–AIS fusion, export
+processing</td>
+<td style="text-align: left;">Tested on simulated traffic</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>strike_exposure.py</code></td>
+<td style="text-align: left;">Exposure index and daily shock</td>
+<td style="text-align: left;">Tested; run on reference layer</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>data_sources.py</code></td>
+<td style="text-align: left;">Loaders for prices, PortWatch and
+ACLED</td>
+<td style="text-align: left;">Snapshot paths run</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>event_study.py</code></td>
+<td style="text-align: left;">Abnormal returns,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+and placebo inference</td>
+<td style="text-align: left;">Tested; run on Brent</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>local_projections.py</code></td>
+<td style="text-align: left;">Impulse responses, HAC or
+lag-augmented</td>
+<td style="text-align: left;">Monte Carlo checked; run</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>run_all.py</code></td>
+<td style="text-align: left;">Rebuilds all tables and figures</td>
+<td style="text-align: left;">Run end to end</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="app:robust">Pre-specified robustness grid</h1>
+<p>All of the following are fixed before any price regression is
+estimated and reported in full: estimation windows of 60, 130 and 250
+trading days; exposure bandwidths
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mn>10</mn><mo>,</mo><mn>25</mn><mo>,</mo><mn>50</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">h \in \{10, 25, 50\}</annotation></semantics></math> km;
+Hormuz-dependent assets only; market-model returns with equity, dollar
+and copper factors; weekly instead of daily data; and every
+specification on both spot and front-month futures prices.</p>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="list">
+<div id="ref-arslanalp2021" class="csl-entry" role="listitem">
+Arslanalp, Serkan, Robin Koepke, and Jasper Verschuur. 2021.
+<em>Tracking Trade from Space: An Application to <span>P</span>acific
+<span>I</span>sland Countries</em>. IMF Working Paper 21/225.
+International Monetary Fund.
+</div>
+<div id="ref-baumeister2019" class="csl-entry" role="listitem">
+Baumeister, Christiane, and James D. Hamilton. 2019. <span>“Structural
+Interpretation of Vector Autoregressions with Incomplete Identification:
+Revisiting the Role of Oil Supply and Demand Shocks.”</span>
+<em>American Economic Review</em> 109 (5): 1873–910.
+</div>
+<div id="ref-caldara2022" class="csl-entry" role="listitem">
+Caldara, Dario, and Matteo Iacoviello. 2022. <span>“Measuring
+Geopolitical Risk.”</span> <em>American Economic Review</em> 112 (4):
+1194–225.
+</div>
+<div id="ref-cerdeiro2020" class="csl-entry" role="listitem">
+Cerdeiro, Diego A., Andras Komaromi, Yang Liu, and Mamoon Saeed. 2020.
+<em>World Seaborne Trade in Real Time: A Proof of Concept for Building
+<span>AIS</span>-Based Nowcasts from Scratch</em>. IMF Working Paper
+20/57. International Monetary Fund.
+</div>
+<div id="ref-crisp2004" class="csl-entry" role="listitem">
+Crisp, David J. 2004. <em>The State-of-the-Art in Ship Detection in
+Synthetic Aperture Radar Imagery</em>. Research Report DSTO-RR-0272.
+Defence Science; Technology Organisation.
+</div>
+<div id="ref-donaldson2016" class="csl-entry" role="listitem">
+Donaldson, Dave, and Adam Storeygard. 2016. <span>“The View from Above:
+Applications of Satellite Data in Economics.”</span> <em>Journal of
+Economic Perspectives</em> 30 (4): 171–98.
+</div>
+<div id="ref-greidanus2017" class="csl-entry" role="listitem">
+Greidanus, Harm, Marlene Alvarez, Carlos Santamaria, François-Xavier
+Thoorens, Naouma Kourti, and Pietro Argentieri. 2017. <span>“The
+<span>SUMO</span> Ship Detector Algorithm for Satellite Radar
+Images.”</span> <em>Remote Sensing</em> 9 (3): 246.
+</div>
+<div id="ref-henderson2012" class="csl-entry" role="listitem">
+Henderson, J. Vernon, Adam Storeygard, and David N. Weil. 2012.
+<span>“Measuring Economic Growth from Outer Space.”</span> <em>American
+Economic Review</em> 102 (2): 994–1028.
+</div>
+<div id="ref-portwatch" class="csl-entry" role="listitem">
+International Monetary Fund. 2026. <em><span>PortWatch</span>: Daily
+Chokepoint Transit Calls</em>. <a href="https://portwatch.imf.org"
+class="uri">Https://portwatch.imf.org</a>, API responses of 28 October
+2026.
+</div>
+<div id="ref-jorda2005" class="csl-entry" role="listitem">
+Jordà, Òscar. 2005. <span>“Estimation and Inference of Impulse Responses
+by Local Projections.”</span> <em>American Economic Review</em> 95 (1):
+161–82.
+</div>
+<div id="ref-kanzig2021" class="csl-entry" role="listitem">
+Känzig, Diego R. 2021. <span>“The Macroeconomic Effects of Oil Supply
+News: Evidence from <span>OPEC</span> Announcements.”</span>
+<em>American Economic Review</em> 111 (4): 1092–125.
+</div>
+<div id="ref-kilian2009" class="csl-entry" role="listitem">
+Kilian, Lutz. 2009. <span>“Not All Oil Price Shocks Are Alike:
+Disentangling Demand and Supply Shocks in the Crude Oil Market.”</span>
+<em>American Economic Review</em> 99 (3): 1053–69.
+</div>
+<div id="ref-kilianmurphy2014" class="csl-entry" role="listitem">
+Kilian, Lutz, and Daniel P. Murphy. 2014. <span>“The Role of Inventories
+and Speculative Trading in the Global Market for Crude Oil.”</span>
+<em>Journal of Applied Econometrics</em> 29 (3): 454–78.
+</div>
+<div id="ref-little1961" class="csl-entry" role="listitem">
+Little, John D. C. 1961. <span>“A Proof for the Queuing Formula:
+<span><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mi>λ</mi><mi>W</mi></mrow><annotation encoding="application/x-tex">L = \lambda W</annotation></semantics></math></span>.”</span>
+<em>Operations Research</em> 9 (3): 383–87.
+</div>
+<div id="ref-mackinlay1997" class="csl-entry" role="listitem">
+MacKinlay, A. Craig. 1997. <span>“Event Studies in Economics and
+Finance.”</span> <em>Journal of Economic Literature</em> 35 (1): 13–39.
+</div>
+<div id="ref-montiel2021" class="csl-entry" role="listitem">
+Montiel Olea, José Luis, and Mikkel Plagborg-Møller. 2021. <span>“Local
+Projection Inference Is Simpler and More Robust Than You Think.”</span>
+<em>Econometrica</em> 89 (4): 1789–823.
+</div>
+<div id="ref-mueller2021" class="csl-entry" role="listitem">
+Mueller, Hannes, Andre Groeger, Jonathan Hersh, Andrea Matranga, and
+Joan Serrat. 2021. <span>“Monitoring War Destruction from Space Using
+Machine Learning.”</span> <em>Proceedings of the National Academy of
+Sciences</em> 118 (23): e2025400118.
+</div>
+<div id="ref-mukherjee2021" class="csl-entry" role="listitem">
+Mukherjee, Abhiroop, George Panayotov, and Janghoon Shon. 2021.
+<span>“Eye in the Sky: Private Satellites and Government Macro
+Data.”</span> <em>Journal of Financial Economics</em> 141 (1): 234–54.
+</div>
+<div id="ref-naturalearth" class="csl-entry" role="listitem">
+Natural Earth. 2026. <em>1:10m Cultural and Physical Vectors</em>. <a
+href="https://www.naturalearthdata.com"
+class="uri">Https://www.naturalearthdata.com</a>.
+</div>
+<div id="ref-paolo2024" class="csl-entry" role="listitem">
+<span class="nocase">Paolo, Fernando S. et al.</span> 2024.
+<span>“Satellite Mapping Reveals Extensive Industrial Activity at
+Sea.”</span> <em>Nature</em> 625: 85–91.
+</div>
+<div id="ref-raleigh2010" class="csl-entry" role="listitem">
+Raleigh, Clionadh, Andrew Linke, Håvard Hegre, and Joakim Karlsen. 2010.
+<span>“Introducing <span>ACLED</span>: An Armed Conflict Location and
+Event Dataset.”</span> <em>Journal of Peace Research</em> 47 (5):
+651–60.
+</div>
+<div id="ref-stockwatson2018" class="csl-entry" role="listitem">
+Stock, James H., and Mark W. Watson. 2018. <span>“Identification and
+Estimation of Dynamic Causal Effects in Macroeconomics Using External
+Instruments.”</span> <em>The Economic Journal</em> 128 (610): 917–48.
+</div>
+<div id="ref-torres2012" class="csl-entry" role="listitem">
+<span class="nocase">Torres, Ramon et al.</span> 2012.
+<span>“<span>GMES</span> <span>S</span>entinel-1 Mission.”</span>
+<em>Remote Sensing of Environment</em> 120: 9–24.
+</div>
+<div id="ref-eia_spot" class="csl-entry" role="listitem">
+U.S. Energy Information Administration. 2026. <em>Europe
+<span>B</span>rent and <span>WTI</span> Spot Prices, Daily</em>. <a
+href="https://www.eia.gov/dnav/pet/pet_pri_spt_s1_d.htm"
+class="uri">Https://www.eia.gov/dnav/pet/pet_pri_spt_s1_d.htm</a>,
+retrieved via <a href="https://github.com/datasets/oil-prices"
+class="uri">https://github.com/datasets/oil-prices</a>.
+</div>
+<div id="ref-verschuur2022" class="csl-entry" role="listitem">
+Verschuur, Jasper, Elco E. Koks, and Jim W. Hall. 2022. <span>“Ports’
+Criticality in International Trade and Global Supply-Chains.”</span>
+<em>Nature Communications</em> 13: 4351.
+</div>
+</div>
+</main>
+</body>
+</html>

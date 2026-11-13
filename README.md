@@ -2,18 +2,23 @@
 
 <p align="center">
 <a href="requirements.txt"><img src="https://img.shields.io/badge/python-3-f5a623?style=flat-square&labelColor=0b1020" alt="Python 3"></a>
+<a href="https://thanatchon36.github.io/hormuz-orbital/paper/"><img src="https://img.shields.io/badge/paper-read%20online-f5a623?style=flat-square&labelColor=0b1020" alt="Paper: read online"></a>
 <a href="paper/paper.pdf"><img src="https://img.shields.io/badge/paper-PDF-f5a623?style=flat-square&labelColor=0b1020" alt="Paper PDF"></a>
 <a href="tests/"><img src="https://img.shields.io/badge/tests-14-f5a623?style=flat-square&labelColor=0b1020" alt="14 tests"></a>
 <a href="#data"><img src="https://img.shields.io/badge/data-EIA%20%C2%B7%20IMF%20PortWatch-f5a623?style=flat-square&labelColor=0b1020" alt="Data: EIA and IMF PortWatch"></a>
 <a href="#what-has-been-run"><img src="https://img.shields.io/badge/satellite%20index-not%20yet%20run-b0560f?style=flat-square&labelColor=0b1020" alt="Satellite index: not yet run"></a>
+<a href="https://zenodo.org/badge/latestdoi/1456110926"><img src="https://zenodo.org/badge/1456110926.svg" alt="DOI"></a>
+<a href="https://huggingface.co/datasets/thanatchon36/hormuz-orbital"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20dataset-hormuz--orbital-f5a623?style=flat-square&labelColor=0b1020" alt="Hugging Face dataset"></a>
 <a href="#before-citing-or-extending"><img src="https://img.shields.io/badge/license-TBD-ffe8a3?style=flat-square&labelColor=0b1020" alt="License: to be decided"></a>
 </p>
 
 <p align="center">
+📖 <b><a href="https://thanatchon36.github.io/hormuz-orbital/paper/">Read the paper online</a></b> ·
 📄 <b><a href="paper/paper.pdf">Download the PDF</a></b> ·
 📊 <b><a href="outputs/tables/">Results tables</a></b> ·
 🖼️ <b><a href="outputs/figures/">Figures</a></b> ·
 🗂️ <b><a href="#data">Data sources</a></b> ·
+🤗 <b><a href="https://huggingface.co/datasets/thanatchon36/hormuz-orbital">Dataset</a></b> ·
 ⚙️ <b><a href="config.yaml">Config</a></b>
 </p>
 
@@ -50,6 +55,7 @@ PortWatch transits first.
 | `python paper/fig_charts.py` | Figures 4, 6-8 (data and method charts) |
 | `python paper/fonts/make_fonts.py` | Optional: Inter as TrueType for clean PDF embedding |
 | `latexmk -pdf main.tex` (in `paper/`) | Build the preprint (needs TeX Live) |
+| `python docs/build_web.py` | Web reader → `docs/paper/index.html`, served at <https://thanatchon36.github.io/hormuz-orbital/paper/> (needs pandoc) |
 
 Each figure script ends with an automatic check that reports any overlapping or clipped text; every figure in the
 paper passes with zero overlaps. `paper/main.bbl` is included, so the paper also compiles without BibTeX (this is the
@@ -87,7 +93,12 @@ form arXiv expects).
 
 The preprint by Thanatchon Chongmankhong (November 2026) is in [`paper/`](paper/): a 13-page PDF in
 [`paper/paper.pdf`](paper/paper.pdf) and its LaTeX source in [`paper/main.tex`](paper/main.tex) with
-[`paper/refs.bib`](paper/refs.bib), set in the arXiv preprint style ([`paper/arxiv.sty`](paper/arxiv.sty)).
+[`paper/refs.bib`](paper/refs.bib), set in the arXiv preprint style ([`paper/arxiv.sty`](paper/arxiv.sty)). Read it online at
+<https://thanatchon36.github.io/hormuz-orbital/paper/> (light and dark themes).
+
+- Dataset on Hugging Face: [`thanatchon36/hormuz-orbital`](https://huggingface.co/datasets/thanatchon36/hormuz-orbital),
+  with the price and transit snapshots, the reference tables and the result tables
+- No model is published: nothing here is trained. The CFAR detector and the fusion filter are re-run from `config.yaml`
 
 `outputs/tables/` holds what `run_all.py` produced on 2026-11-10 from EIA Brent spot (to 2026-11-03) and IMF
 PortWatch (to 2026-10-25):
@@ -182,3 +193,7 @@ live API clients not yet run.
 - No licence file is included yet. Choose one before making the repository public (for example MIT for the code and
   CC BY 4.0 for the paper). Data snapshots remain under their providers' terms (EIA, IMF PortWatch, Natural Earth), and
   `arxiv.sty` under the terms of its original repository.
+
+## Citation
+
+Each release is archived on Zenodo (DOI badge above).

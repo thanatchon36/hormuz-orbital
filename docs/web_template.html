@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hormuz Orbital</title>
+<meta name="description" content="Preprint: satellite-observed shipping in the Strait of Hormuz, missile strikes and global energy prices.">
+<meta name="author" content="Thanatchon Chongmankhong">
+<style>
+:root {
+  --paper: #fbfbf9; --ink: #17191c; --ink-2: #4c5058; --rule: #dcdcd6;
+  --accent: #b0560f; --accent-soft: #f6eedd; --plate: #ffffff; --quote: #f3f3ef;
+  --font-body: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-sans: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0b1020; --ink: #e8e9ec; --ink-2: #a6abb4; --rule: #2a3150;
+    --accent: #f5a623; --accent-soft: #2a2414; --plate: #f4f4f2; --quote: #141a2e; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0b1020; --ink: #e8e9ec; --ink-2: #a6abb4; --rule: #2a3150;
+  --accent: #f5a623; --accent-soft: #2a2414; --plate: #f4f4f2; --quote: #141a2e; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.62 var(--font-body); }
+.page { max-width: 46rem; margin: 0 auto; padding: 48px 16px 72px; }
+.bar { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; font: 500 14px var(--font-sans);
+  border-bottom: 1px solid var(--rule); padding-bottom: 14px; margin-bottom: 28px; }
+.bar a { color: var(--accent); text-decoration: none; }
+.bar button { margin-left: auto; font: inherit; background: none; border: 1px solid var(--rule); color: var(--ink-2);
+  border-radius: 6px; padding: 3px 10px; cursor: pointer; }
+h1, h2, h3, h4 { font-weight: 650; line-height: 1.2; text-wrap: balance; }
+h1.title { font-size: clamp(1.7rem, 4.2vw, 2.3rem); margin: 0 0 .4em; }
+.author { color: var(--ink-2); font-family: var(--font-sans); font-size: 15px; margin: 0; }
+h2 { font-size: 1.4rem; margin: 2.2em 0 .5em; } h3 { font-size: 1.1rem; margin: 1.8em 0 .4em; }
+a { color: var(--accent); }
+.abstract { background: var(--quote); border-left: 3px solid var(--accent); padding: 14px 18px; margin: 28px 0; }
+figure { margin: 28px 0; } figure img { width: 100%; height: auto; background: var(--plate); border-radius: 4px; padding: 6px; }
+figcaption { font: 14px/1.5 var(--font-sans); color: var(--ink-2); margin-top: 8px; }
+table { border-collapse: collapse; width: 100%; font: 14px/1.45 var(--font-sans); display: block; overflow-x: auto; margin: 20px 0; }
+th, td { padding: 5px 8px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+thead th { border-bottom: 2px solid var(--ink-2); }
+code { font-family: var(--font-mono); font-size: .9em; }
+math { font-size: 1.05em; } .display { overflow-x: auto; display: block; }
+#refs, .csl-bib-body { font-size: 15px; } .csl-entry { margin-bottom: .6em; }
+.footnotes { font-size: 14px; color: var(--ink-2); border-top: 1px solid var(--rule); margin-top: 40px; }
+</style>
+<script>
+try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+function flip() { const d = document.documentElement, dark = d.dataset.theme === "dark" ||
+  (d.dataset.theme === "auto" && matchMedia("(prefers-color-scheme: dark)").matches);
+  d.dataset.theme = dark ? "light" : "dark"; try { localStorage.setItem("theme", d.dataset.theme); } catch (e) {} }
+</script>
+</head>
+<body>
+<main class="page">
+<nav class="bar"><a href="https://github.com/thanatchon36/hormuz-orbital">GitHub</a><a href="paper.pdf">📄 PDF</a><button onclick="flip()">◐ Theme</button></nav>
+<h1 class="title">$title$</h1>
+<p class="author">$for(author)$$author$$sep$, $endfor$</p>
+$if(abstract)$<div class="abstract"><strong>Abstract.</strong> $abstract$</div>$endif$
+$body$
+</main>
+</body>
+</html>
