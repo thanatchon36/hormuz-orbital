@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite it as below."
+title: "hormuz-orbital: Orbital Evidence on Chokepoint Risk"
+abstract: "Code, data snapshots and preprint on satellite-observed shipping in the Strait of Hormuz, missile strikes and global energy prices."
+authors:
+  - family-names: Chongmankhong
+    given-names: Thanatchon
+version: 0.1.1
+date-released: 2026-11-13
+license: MIT
+repository-code: "https://github.com/thanatchon36/hormuz-orbital"
+url: "https://thanatchon36.github.io/hormuz-orbital/paper/"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24184064
+    description: "Zenodo archive of v0.1.0"
+keywords: [strait-of-hormuz, sentinel-1, ais, energy-prices, event-study]
+preferred-citation:
+  type: article
+  title: "Orbital Evidence on Chokepoint Risk: Satellite-Observed Shipping in the Strait of Hormuz, Missile Strikes, and Global Energy Prices"
+  authors:
+    - family-names: Chongmankhong
+      given-names: Thanatchon
+  year: 2026
+  month: 11
+  status: preprint
+  url: "https://thanatchon36.github.io/hormuz-orbital/paper/"

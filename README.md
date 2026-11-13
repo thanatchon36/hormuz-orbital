@@ -9,7 +9,7 @@
 <a href="#what-has-been-run"><img src="https://img.shields.io/badge/satellite%20index-not%20yet%20run-b0560f?style=flat-square&labelColor=0b1020" alt="Satellite index: not yet run"></a>
 <a href="https://zenodo.org/badge/latestdoi/1456110926"><img src="https://zenodo.org/badge/1456110926.svg" alt="DOI"></a>
 <a href="https://huggingface.co/datasets/thanatchon36/hormuz-orbital"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20dataset-hormuz--orbital-f5a623?style=flat-square&labelColor=0b1020" alt="Hugging Face dataset"></a>
-<a href="#before-citing-or-extending"><img src="https://img.shields.io/badge/license-TBD-ffe8a3?style=flat-square&labelColor=0b1020" alt="License: to be decided"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-ffe8a3?style=flat-square&labelColor=0b1020" alt="License MIT"></a>
 </p>
 
 <p align="center">
@@ -190,10 +190,9 @@ live API clients not yet run.
 
 - The bibliography in `paper/refs.bib` was compiled without database access. Check every author, year, volume and page
   against the publisher's record.
-- No licence file is included yet. Choose one before making the repository public (for example MIT for the code and
-  CC BY 4.0 for the paper). Data snapshots remain under their providers' terms (EIA, IMF PortWatch, Natural Earth), and
-  `arxiv.sty` under the terms of its original repository.
+- Licence: code under MIT ([`LICENSE`](LICENSE)); the paper under CC BY 4.0. Data snapshots remain under their
+  providers' terms (EIA, IMF PortWatch, Natural Earth), and `arxiv.sty` under the terms of its original repository.
 
 ## Citation
 
-Each release is archived on Zenodo (DOI badge above).
+See [`CITATION.cff`](CITATION.cff); each release is archived on Zenodo (DOI badge above). License: MIT.
