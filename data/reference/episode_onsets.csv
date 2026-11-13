@@ -1,0 +1,7 @@
+episode_id,calendar_date,day0,label,short_label,prior_exposure,note
+EP1,2019-09-14,2019-09-16,Abqaiq-Khurais attack,Abqaiq 2019,high,Saturday attack; first close on Monday
+EP2,2020-01-03,2020-01-03,Soleimani killing and Ain al-Asad strike,Jan 2020,low,Strike before London open on Friday
+EP3,2024-04-13,2024-04-15,Iran's first direct attack on Israel,Apr 2024,low,Weekend attack; first close on Monday
+EP4,2024-10-01,2024-10-01,Iran's second attack on Israel,Oct 2024,low,Warning public before London close
+EP5,2025-06-13,2025-06-13,Israel-Iran twelve-day war,Jun 2025,medium,Strikes began after Thursday close
+EP6,2026-02-28,2026-03-02,US-Israeli strikes on Iran and Gulf-wide retaliation,2026 war,high,Saturday onset; first close on Monday

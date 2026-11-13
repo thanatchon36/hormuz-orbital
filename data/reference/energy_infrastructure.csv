@@ -1,0 +1,23 @@
+name,country,type,lat,lon,capacity_mboed,hormuz_dependent,capacity_status
+Ras Tanura and Ju'aymah export terminals,SAU,oil_terminal,26.70,50.18,6.0,1,indicative
+Abqaiq processing plant,SAU,oil_processing,25.93,49.68,7.0,1,indicative
+Khurais field and processing,SAU,oil_field,25.07,48.19,1.45,1,indicative
+Yanbu terminals (East-West pipeline),SAU,oil_terminal,24.02,38.10,5.0,0,indicative
+Kharg Island terminal,IRN,oil_terminal,29.24,50.31,1.6,1,indicative
+South Pars gas processing (Asaluyeh),IRN,gas_processing,27.48,52.61,4.0,1,indicative
+Bandar Abbas refineries,IRN,refinery,27.12,56.05,0.75,1,indicative
+Abadan refinery,IRN,refinery,30.34,48.28,0.45,1,indicative
+Jask terminal (Goreh-Jask pipeline),IRN,oil_terminal,25.64,57.77,0.3,0,indicative
+Basra offshore terminals,IRQ,oil_terminal,29.78,48.81,3.3,1,indicative
+Mina al-Ahmadi terminal and refinery,KWT,oil_terminal,29.07,48.15,2.0,1,indicative
+Ras Laffan LNG,QAT,lng,25.91,51.56,1.8,1,indicative
+Mesaieed industrial city,QAT,refinery,24.99,51.56,0.15,1,indicative
+Sitra refinery,BHR,refinery,26.15,50.63,0.38,1,indicative
+Ruwais refinery and Jebel Dhanna terminal,ARE,refinery,24.11,52.73,0.82,1,indicative
+Das Island LNG and crude,ARE,lng,25.15,52.87,0.6,1,indicative
+Fujairah terminal (Habshan-Fujairah pipeline),ARE,oil_terminal,25.17,56.36,1.5,0,indicative
+Mina al-Fahal terminal,OMN,oil_terminal,23.63,58.52,0.9,0,indicative
+Sohar refinery and port,OMN,refinery,24.49,56.62,0.2,0,indicative
+Haifa refinery,ISR,refinery,32.80,35.05,0.2,0,indicative
+Ashdod refinery,ISR,refinery,31.83,34.67,0.1,0,indicative
+Leviathan gas platform,ISR,gas_processing,32.60,34.80,0.2,0,indicative

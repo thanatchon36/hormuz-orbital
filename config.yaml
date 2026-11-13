@@ -1,0 +1,80 @@
+# hormuz-orbital -- project configuration
+# Every number here is a design choice that the thesis must defend or tune.
+# Geometry is WGS84 lon/lat.
+
+project: hormuz-orbital
+
+# ---------------------------------------------------------------- study area
+map_extent:
+  regional: [30.0, 62.5, 11.0, 40.5]        # lon_min, lon_max, lat_min, lat_max
+  hormuz:   [54.2, 58.6, 24.3, 27.7]
+
+aoi:
+  # Transit gate: vessels inside this box are assumed to be under way through
+  # the Strait. Placeholder to be refined against an AIS density raster.
+  gate:        {lon_min: 56.20, lon_max: 56.90, lat_min: 26.30, lat_max: 26.80}
+  # Queue zones: stocks of waiting vessels on either side of the Strait.
+  queue_oman:  {lon_min: 56.40, lon_max: 57.30, lat_min: 24.85, lat_max: 25.70}
+  queue_gulf:  {lon_min: 54.90, lon_max: 55.95, lat_min: 25.35, lat_max: 26.20}
+
+# Schematic main shipping route (lon, lat), east to west. NOT a navigational
+# product: replace with the IMO traffic separation scheme or an AIS density
+# centreline before any quantitative use.
+route_schematic:
+  - [58.30, 24.75]
+  - [57.55, 25.25]
+  - [57.05, 25.90]
+  - [56.82, 26.35]
+  - [56.62, 26.57]
+  - [56.42, 26.62]
+  - [56.12, 26.52]
+  - [55.60, 26.33]
+  - [55.10, 26.12]
+  - [54.40, 25.95]
+
+# ---------------------------------------------------------------- SAR detector
+sar:
+  collection: COPERNICUS/S1_GRD        # Earth Engine, sigma0 in dB
+  instrument_mode: IW
+  band: VH                             # cross-pol: low sea clutter
+  confirm_band: VV
+  pixel_m: 10
+  guard_m: 250                         # guard half-width (> half a VLCC)
+  background_m: 600                    # background half-width
+  enl: 4.4                             # equivalent number of looks, IW GRDH
+  pfa: 1.0e-7                          # design false-alarm rate per pixel
+  min_pixels: 4
+  min_length_m: 60
+  max_length_m: 480
+  tanker_min_length_m: 180             # Aframax and larger
+  coast_buffer_m: 500
+  static_db: -17.0                     # annual median VH above this = fixed structure
+  min_gate_coverage: 0.95
+
+flow:
+  mean_speed_kn: 12.0                  # calibrate on AIS in the calm period
+  calm_period: ["2023-01-01", "2026-02-27"]
+
+# ---------------------------------------------------------------- strikes
+exposure:
+  bandwidth_km: 25.0                   # Gaussian kernel for infrastructure
+  lane_bandwidth_km: 40.0              # kernel for distance to the route
+  lane_weight_mboed: 20.0              # approximate oil flow through the Strait
+
+acled:
+  event_type: "Explosions/Remote violence"
+  sub_event_types: ["Shelling/artillery/missile attack", "Air/drone strike"]
+  countries: [Iran, Israel, Iraq, Saudi Arabia, United Arab Emirates, Qatar,
+              Bahrain, Kuwait, Oman, Yemen, Syria, Lebanon, Jordan]
+
+# ---------------------------------------------------------------- econometrics
+event_study:
+  estimation_window: [-130, -11]       # trading days relative to day 0
+  event_window: [-5, 20]
+  car_windows: [[0, 0], [0, 1], [0, 5], [0, 10], [0, 20]]
+  placebo_start: "2015-01-01"
+
+local_projections:
+  horizons: 20
+  lags: 5
+  ci: 0.90

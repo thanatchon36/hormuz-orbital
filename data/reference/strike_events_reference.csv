@@ -1,0 +1,45 @@
+id,date,episode,location,country,lat,lon,target_type,attributed_to,confidence,note
+R01,2019-05-12,2019-2022 incidents,Fujairah anchorage,ARE,25.20,56.45,maritime,Unattributed,high,Four tankers sabotaged at anchor
+R02,2019-06-13,2019-2022 incidents,Gulf of Oman tankers,INT,25.45,57.40,maritime,Unattributed,high,Front Altair and Kokuka Courageous
+R03,2019-09-14,2019-2022 incidents,Abqaiq,SAU,25.93,49.68,energy,Houthi-claimed,high,Oil processing plant
+R04,2019-09-14,2019-2022 incidents,Khurais,SAU,25.07,48.19,energy,Houthi-claimed,high,Oil field
+R05,2020-01-08,2019-2022 incidents,Ain al-Asad air base,IRQ,33.79,42.44,military,Iran,high,Ballistic missiles on US forces
+R06,2020-01-08,2019-2022 incidents,Erbil,IRQ,36.24,43.96,military,Iran,high,Ballistic missiles on US forces
+R07,2022-01-17,2019-2022 incidents,Abu Dhabi (Musaffah),ARE,24.35,54.50,energy,Houthi-claimed,high,Fuel depot and airport site
+R08,2022-03-25,2019-2022 incidents,Jeddah bulk plant,SAU,21.71,39.14,energy,Houthi-claimed,high,Fuel storage
+R09,2024-04-14,2024 exchanges,Nevatim air base,ISR,31.21,35.01,military,Iran,high,First direct Iranian attack on Israel
+R10,2024-04-19,2024 exchanges,Isfahan,IRN,32.75,51.86,military,Israel,high,Air-defence site near air base
+R11,2024-10-01,2024 exchanges,Nevatim air base,ISR,31.21,35.01,military,Iran,high,Second Iranian missile attack
+R12,2024-10-01,2024 exchanges,Tel Nof air base,ISR,31.84,34.82,military,Iran,high,Second Iranian missile attack
+R13,2024-10-01,2024 exchanges,Glilot (north Tel Aviv),ISR,32.15,34.81,military,Iran,high,Second Iranian missile attack
+R14,2024-10-26,2024 exchanges,Parchin,IRN,35.52,51.77,military,Israel,high,Missile production site
+R15,2025-06-13,June 2025 war,Natanz,IRN,33.72,51.73,nuclear,Israel; United States,high,Enrichment plant; US strike 22 June
+R16,2025-06-13,June 2025 war,Tehran,IRN,35.70,51.40,military,Israel,high,Command and military sites
+R17,2025-06-13,June 2025 war,Tabriz,IRN,38.13,46.24,military,Israel,high,Air base
+R18,2025-06-13,June 2025 war,Kermanshah,IRN,34.31,47.07,military,Israel,high,Missile bases
+R19,2025-06-13,June 2025 war,Isfahan nuclear centre,IRN,32.59,51.83,nuclear,Israel; United States,high,US strike 22 June
+R20,2025-06-13,June 2025 war,Tel Aviv-Ramat Gan,ISR,32.08,34.80,civil,Iran,high,Missile impacts in urban area
+R21,2025-06-14,June 2025 war,Shahran fuel depot (Tehran),IRN,35.80,51.29,energy,Israel,high,Fuel storage
+R22,2025-06-14,June 2025 war,South Pars (Asaluyeh),IRN,27.48,52.61,energy,Israel,high,Gas processing
+R23,2025-06-15,June 2025 war,Haifa refinery,ISR,32.80,35.05,energy,Iran,high,Refinery damaged
+R24,2025-06-15,June 2025 war,Bat Yam,ISR,32.02,34.75,civil,Iran,high,Residential building
+R25,2025-06-15,June 2025 war,Rehovot,ISR,31.91,34.81,civil,Iran,high,Research institute
+R26,2025-06-19,June 2025 war,Beersheba,ISR,31.26,34.80,civil,Iran,high,Hospital
+R27,2025-06-19,June 2025 war,Arak (Khondab),IRN,34.37,49.24,nuclear,Israel,high,Heavy-water reactor
+R28,2025-06-22,June 2025 war,Fordow,IRN,34.88,50.99,nuclear,United States,high,Enrichment plant
+R29,2025-06-23,June 2025 war,Al Udeid air base,QAT,25.12,51.31,military,Iran,high,Missiles on US base
+R30,2026-02-28,2026 war,Tehran,IRN,35.70,51.40,military,United States; Israel,verify,Opening strikes
+R31,2026-02-28,2026 war,Isfahan,IRN,32.65,51.67,military,United States; Israel,verify,Opening strikes
+R32,2026-02-28,2026 war,Bandar Abbas,IRN,27.14,56.21,military,United States; Israel,verify,Naval facilities
+R33,2026-02-28,2026 war,Tel Aviv,ISR,32.08,34.80,civil,Iran,verify,Missile impacts
+R34,2026-02-28,2026 war,Haifa,ISR,32.80,35.00,civil,Iran,verify,Missile impacts
+R35,2026-02-28,2026 war,Manama (naval base),BHR,26.21,50.61,military,Iran,verify,US naval facility
+R36,2026-02-28,2026 war,Al Udeid air base,QAT,25.12,51.31,military,Iran,verify,US base
+R37,2026-02-28,2026 war,Abu Dhabi (Al Dhafra),ARE,24.25,54.55,military,Iran,verify,US base
+R38,2026-02-28,2026 war,Dubai,ARE,25.25,55.36,civil,Iran,verify,Airport and port area
+R39,2026-02-28,2026 war,Kuwait (Ali Al Salem),KWT,29.35,47.52,military,Iran,verify,US base
+R40,2026-03-02,2026 war,Ras Laffan,QAT,25.91,51.56,energy,Iran,verify,LNG complex
+R41,2026-03-02,2026 war,Ras Tanura,SAU,26.64,50.16,energy,Iran,verify,Refinery
+R42,2026-03-03,2026 war,Fujairah,ARE,25.17,56.36,energy,Iran,verify,Oil terminal area
+R43,2026-03-14,2026 war,Kharg Island,IRN,29.24,50.31,military,United States,verify,Military sites on export island
+R44,2026-03-18,2026 war,South Pars (Asaluyeh),IRN,27.48,52.61,energy,Israel,verify,Gas processing

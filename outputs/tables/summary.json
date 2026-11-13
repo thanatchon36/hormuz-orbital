@@ -1,0 +1,49 @@
+{
+  "brent_last_date": "2026-11-03",
+  "portwatch_last_date": "2026-10-25",
+  "placebo_days": {
+    "0_0": 2640,
+    "0_1": 2639,
+    "0_5": 2635,
+    "0_10": 2630,
+    "0_20": 2620
+  },
+  "flow_noise_band_week1": {
+    "sd_pct": 15.125694775785846,
+    "p05_pct": -22.998761367365734,
+    "p95_pct": 22.53952722770228,
+    "n": 1112
+  },
+  "lp_calm": {
+    "weeks": 164,
+    "corr_dlog_flow_dlog_brent": 0.00256176228486036,
+    "beta_h0_per_10pct_fall": 0.14136624732951078,
+    "ci_h0_per_10pct_fall": [
+      -0.2755026148098423,
+      0.5582351094688638
+    ]
+  },
+  "closure": {
+    "weeks": 34,
+    "corr_levels": -0.6079851732312787,
+    "corr_changes": -0.1782458976538596
+  },
+  "levels": {
+    "tankers_pre": 47.608219178082194,
+    "tankers_post": 2.426778242677824,
+    "all_pre": 84.83835616438355,
+    "all_post": 6.200836820083682,
+    "brent_pre": 67.68559523809523,
+    "brent_post": 103.02947058823531,
+    "brent_27feb": 71.32,
+    "brent_peak": 138.21,
+    "brent_peak_date": "2026-04-07",
+    "spread_pre": 4.030573770491803,
+    "spread_post": 10.842275449101795
+  },
+  "gate": {
+    "route_km_in_gate": 81.52379534025631,
+    "expected_vessels": 13.537368480298857,
+    "single_snapshot_cv": 0.2717896252473203
+  }
+}

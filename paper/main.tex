@@ -1,0 +1,483 @@
+\documentclass{article}
+
+\usepackage{arxiv}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage[scaled=0.92]{helvet}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{placeins}
+\usepackage{array}
+\usepackage[table]{xcolor}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc,backgrounds}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{url}
+\definecolor{linkblue}{HTML}{1F4E8C}
+\usepackage[colorlinks=true,linkcolor=linkblue,citecolor=linkblue,urlcolor=linkblue]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+\definecolor{ink}{HTML}{1F2933}
+\definecolor{muted}{HTML}{65717B}
+\definecolor{accent}{HTML}{CF4257}
+\definecolor{navy}{HTML}{0B3C5D}
+\definecolor{rowgray}{HTML}{F4F6F8}
+\definecolor{boxblue}{HTML}{E6EEF6}
+
+\captionsetup{font=small,labelfont=bf,labelsep=period,justification=justified,singlelinecheck=false}
+\captionsetup[table]{position=top,skip=4pt}
+\setlist{itemsep=1pt,topsep=3pt,leftmargin=1.4em}
+\sisetup{group-minimum-digits=4,detect-all}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.12}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\newcommand{\dd}{\mathrm{d}}
+\makeatletter
+\AtBeginDocument{%
+  \renewcommand{\topfraction}{0.92}\renewcommand{\bottomfraction}{0.6}%
+  \renewcommand{\textfraction}{0.06}\renewcommand{\floatpagefraction}{0.75}%
+  \setcounter{topnumber}{3}\setcounter{totalnumber}{4}%
+  \setlength{\@fptop}{0pt}\setlength{\@fpsep}{14pt plus 2pt}\setlength{\@fpbot}{0pt plus 1fil}}
+\makeatother
+\newcommand{\figref}[1]{\cref{#1}}
+
+\title{Orbital Evidence on Chokepoint Risk:\\[2pt]
+{\large Satellite-Observed Shipping in the Strait of Hormuz,\\ Missile Strikes, and Global Energy Prices}}
+
+\author{Thanatchon Chongmankhong}
+
+\date{November 2026}
+
+\renewcommand{\shorttitle}{Orbital Evidence on Chokepoint Risk}
+\renewcommand{\headeright}{Preprint}
+\renewcommand{\undertitle}{Preprint --- Research design and preliminary evidence}
+
+\hypersetup{
+  pdftitle={Orbital Evidence on Chokepoint Risk: Satellite-Observed Shipping in the Strait of Hormuz, Missile Strikes, and Global Energy Prices},
+  pdfauthor={Thanatchon Chongmankhong},
+  pdfsubject={econ.GN; q-fin.GN; eess.IV},
+  pdfkeywords={Strait of Hormuz, synthetic aperture radar, Sentinel-1, AIS, oil prices, geopolitical risk, event study, local projections},
+}
+
+\raggedbottom
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Do missile and drone strikes move energy prices by taking barrels off the water, or by raising a risk premium on barrels that keep flowing? Answering this requires observing chokepoint flows independently of the self-reported ship-tracking data (AIS) that fail precisely when vessels go dark in wartime. This paper sets out a design that builds two measurements from open data and links them to prices. The first is a transit index for the Strait of Hormuz from Sentinel-1 synthetic-aperture radar, which counts steel hulls whether or not they broadcast, converted to flows by Little's law and fused with AIS in a state-space model that estimates the share of traffic AIS no longer sees. The second is a geocoded strike-exposure index that weights each strike by the energy capacity and sea-lane traffic within reach of where it landed. A three-step identification strategy, consisting of event studies, local projections and an instrumented channel decomposition, separates the physical-flow channel from the risk-premium channel. On simulated scenes the detector reaches precision and recall of 0.997; on simulated traffic in which AIS reports 15\% of true transits, AIS alone understates flow by 86\% while the fused index is within 2\%. Preliminary evidence from public data is consistent with the physical-flow reading. Across six episodes since 2019, Brent jumped 7--11\% on the first trading day with or without any loss of flow, but kept rising only in 2026, when AIS-observed tanker transits through the Strait fell from 47.6 to 2.4 per day: a cumulative abnormal return of 52.8 log points after 20 trading days (placebo $p = 0.015$), against reversals in every other episode. Six events cannot test the hypothesis; they motivate the measurement programme that can.
+\end{abstract}
+
+\keywords{Strait of Hormuz \and synthetic aperture radar \and AIS \and oil prices \and geopolitical risk \and event study \and local projections}
+
+% ======================================================================
+\section{Introduction}
+\label{sec:intro}
+
+Roughly a fifth of the world's oil consumption and a similar share of seaborne LNG normally pass through the Strait of Hormuz, a channel whose shipping lanes are a few kilometres wide. After 28 February 2026 that flow all but stopped. AIS-derived counts from IMF PortWatch \citep{portwatch} show tanker transits falling from a mean of 47.6 per day in the preceding twelve months to 2.4 per day from March to October 2026, and Brent rising from 71.32 USD per barrel on 27 February to 138.21 on 7 April \citep{eia_spot}, a 94\% increase in six weeks (\cref{fig:timeline}).
+
+Yet the same price series contains a puzzle. Between 5 June and 2 July 2026 Brent fell 30\%, from 97.29 to 68.53 USD per barrel, while AIS-visible tanker transits stayed below three per day until mid-June and only then rose, briefly, to 12--14 per day. Either the market anticipated a reopening, or more traffic was already moving than AIS recorded. AIS is self-reported: in a conflict zone vessels switch transponders off, spoof positions, or lose satellite positioning to jamming. The data that measure chokepoint flows are least reliable exactly when those flows matter most.
+
+This paper proposes to resolve the ambiguity with a sensor that does not depend on cooperation. Synthetic-aperture radar (SAR) images steel hulls day and night, through cloud and dust, regardless of whether a ship broadcasts. The European Sentinel-1 constellation \citep{torres2012} has imaged the Strait every few days since 2014, and its archive is free.
+
+\paragraph{Contributions.} The design makes three contributions, each corresponding to one paper of a three-paper thesis.
+\begin{enumerate}
+  \item \textbf{A sensor-independent transit index} for the world's most important energy chokepoint, together with an estimated \emph{dark share}, the fraction of traffic that AIS fails to see (\cref{sec:sat}).
+  \item \textbf{A spatial strike-exposure index} that converts event geography into a continuous treatment, separating a strike on a refinery from one on a remote air base (\cref{sec:exposure}).
+  \item \textbf{A channel decomposition} that separates lost barrels from risk premium using flows that are observed rather than inferred (\cref{sec:ident}).
+\end{enumerate}
+\Cref{sec:evidence} reports preliminary evidence from public price and transit data, and \cref{sec:threats} discusses threats to validity. The code that produces every number and figure in this paper is described in \cref{app:code}.
+
+% ======================================================================
+\section{Related literature}
+\label{sec:lit}
+
+Six literatures each supply one part of the design; none combines them.
+
+\paragraph{Oil-shock identification.} Supply, demand and news shocks have different price and macroeconomic effects \citep{kilian2009,kilianmurphy2014,baumeister2019,kanzig2021}. In this literature shocks are inferred from prices, production or announcements; physical chokepoint flows are not observed directly.
+
+\paragraph{Geopolitical risk.} Text-based indices of geopolitical risk move oil prices and investment, and threats differ from acts \citep{caldara2022}. Such indices are aspatial: they cannot tell a strike on a processing plant from one on an empty air base.
+
+\paragraph{Satellite data in economics and finance.} Imagery measures activity where official statistics are weak and changes how markets price news \citep{henderson2012,donaldson2016,mukherjee2021}. Applications have centred on night lights, car parks and storage tanks rather than transit under conflict.
+
+\paragraph{AIS-based trade monitoring.} Ship-position data nowcast trade and chokepoint transits at daily frequency \citep{cerdeiro2020,arslanalp2021,verschuur2022}. Because AIS is self-reported, it degrades under jamming and deliberate silence.
+
+\paragraph{Radar vessel detection.} Constant-false-alarm-rate detectors applied to Sentinel-1 locate vessels at global scale and show that a large share of them do not broadcast AIS \citep{crisp2004,greidanus2017,paolo2024}. These tools were built for fisheries and offshore monitoring and have not been linked to commodity prices.
+
+\paragraph{Conflict events and damage from space.} Geocoded event datasets and imagery measure where violence occurs and how much it destroys \citep{raleigh2010,mueller2021}, but have not been tied to energy-infrastructure exposure or market outcomes.
+
+% ======================================================================
+\section{Study area and data}
+\label{sec:data}
+
+The study area runs from the eastern Mediterranean to the Gulf of Oman (\ang{30}--\ang{62.5}\,E, \ang{11}--\ang{40.5}\,N). \Cref{fig:region} places strike sites against energy infrastructure, the three regional chokepoints and the pipelines that bypass the Strait. On the illustrative reference layer, strikes in 2024 and June 2025 cluster in Israel and inland Iran, with South Pars the main exception; the 2026 sites ring the Gulf coast and sit on terminals, refineries and LNG plants (\cref{fig:gulf}).
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig1_region.pdf}
+  \caption{Strike sites and energy infrastructure, 2019--2026. Solid circles are documented strike locations; hollow circles mark 2026 sites recalled from open-source reporting and not yet verified. Marker area for infrastructure scales with indicative capacity. The inset enlarges Israel, where sites are too close to separate at regional scale; the framed area is shown in \cref{fig:gulf}. This layer illustrates the mapping workflow only; all estimates use ACLED records. Basemap: Natural Earth \citep{naturalearth}; boundaries are for orientation only.}
+  \label{fig:region}
+\end{figure}
+
+\begin{figure}[!tbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig2_gulf.pdf}
+  \caption{The Gulf energy belt. Export terminals, processing plants and LNG complexes line both shores, and the only sea route out passes through the Strait of Hormuz. Dashed lines show the three pipelines that bypass it (schematic). The framed area is enlarged in \cref{fig:hormuz}. Symbols as in \cref{fig:region}.}
+  \label{fig:gulf}
+\end{figure}
+
+\Cref{fig:hormuz} shows the counting geometry at the Strait. Vessels inside the \emph{transit gate} are assumed to be under way, so their count converts to a flow (\cref{sec:sat}). Vessels inside the two \emph{queue zones} are waiting, so their count is a stock that builds when transits stop and drains when they resume. Gate and zones are placeholders to be redrawn against an AIS density raster before any counting.
+
+\begin{figure}[!tbp]
+  \centering
+  \includegraphics[width=0.86\textwidth]{figures/fig3_hormuz.pdf}
+  \caption{Counting design at the Strait of Hormuz. Radar detections inside the transit gate (\ang{56.2}--\ang{56.9}\,E, \ang{26.3}--\ang{26.8}\,N) are converted to transits per day; detections in the queue zones measure the stock of waiting vessels. The main route crosses the gate for 81.5\,km. Gate, zones and route are design placeholders, not navigational products.}
+  \label{fig:hormuz}
+\end{figure}
+
+\Cref{tab:data} lists the data. Every core input is free and open; licensed data enter only for validation and for price benchmarks that lack a free daily series. Two snapshots ship with the code so that every number in this paper can be reproduced offline: Brent and WTI spot prices from the EIA to 3 November 2026 \citep{eia_spot}, and IMF PortWatch daily transit calls for 1 January 2023 to 25 October 2026 \citep{portwatch}. The PortWatch snapshot consists of API responses of 28 October 2026 taken from a public replication package and checked row by row against the raw responses stored there; the full history from January 2019 should be pulled from the IMF before publication.
+
+\begin{table}[!tbp]
+\centering
+\small
+\caption{Data sources. ``Free'' sources are open or free for research use.}
+\label{tab:data}
+\begin{tabularx}{\textwidth}{@{}L{2.55cm}L{4.1cm}L{3.15cm}Y@{}}
+\toprule
+Layer & Dataset & Frequency, access & Role \\
+\midrule
+Radar imagery & Sentinel-1 IW GRD, VV and VH, 10\,m & Every 2--6 days; free & Vessel detection (core) \\
+\rowcolor{rowgray} Optical imagery & Sentinel-2, 10\,m & Every 5 days if cloud-free; free & Count cross-check, vessel type \\
+Vessel detections & Global Fishing Watch SAR detections matched to AIS & Per scene; free for research & Detector benchmark \\
+\rowcolor{rowgray} Thermal anomalies & VIIRS active fire and gas flaring & Daily, 375\,m; free & Damage verification \\
+Commercial imagery & PlanetScope; ICEYE, Capella or Umbra SAR & Daily or tasked; licensed & Time-of-day gaps, validation \\
+\rowcolor{rowgray} AIS transits & IMF PortWatch daily chokepoint calls & Daily since 2019; free & Calibration and benchmark \\
+Strike events & ACLED remote-violence events; UCDP; GDELT & Event level; free for research & Treatment \\
+\rowcolor{rowgray} Prices & Brent, WTI (EIA); Dubai, TTF, JKM, futures curves & Daily; free or terminal & Outcomes \\
+Freight and risk & Tanker rates; crude volatility index; dollar & Daily; licensed or free & Channel markers \\
+\rowcolor{rowgray} Infrastructure & Global Energy Monitor; EIA; OpenStreetMap & Static; free & Exposure weights \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ======================================================================
+\section{Measuring transits from orbit}
+\label{sec:sat}
+
+\subsection{Vessel detection}
+
+Multilooked SAR intensity over homogeneous sea follows a Gamma distribution with shape $L$, the equivalent number of looks. A pixel with intensity $x$ is declared a target when it exceeds a multiple of the mean $\hat\mu$ of a background ring that surrounds a guard window,
+\begin{equation}
+  x > t(L, P_{\mathrm{fa}})\,\hat{\mu}_{\mathrm{ring}}, \qquad
+  t(L, P_{\mathrm{fa}}) = \frac{1}{L}\,Q^{-1}\!\left(L, P_{\mathrm{fa}}\right),
+  \label{eq:cfar}
+\end{equation}
+where $Q^{-1}$ inverts the regularised upper incomplete gamma function. With $L = 4.4$ and a design false-alarm rate of $10^{-7}$ per pixel, $t = 5.65$, or 7.5\,dB above the local mean. Detection runs in the cross-polarised VH band, where sea clutter is weakest, with confirmation in VV. Detected pixels seed a hysteresis step that grows into neighbouring pixels above a looser threshold, recovering whole hulls; detections are then censored from the background and the statistics recomputed so that neighbouring ships in an anchorage do not mask one another. Land, a 500\,m coastal buffer and fixed structures (pixels whose median VH over the previous year exceeds $-17$\,dB) are masked. Objects of 60--480\,m length are retained as vessels, and those of at least 180\,m form a large-tanker class.
+
+\subsection{From snapshot counts to flows}
+
+A radar image is a snapshot. If $N$ vessels are inside a gate of along-route length $G$ that they cross at mean speed $v$, Little's law \citep{little1961} gives the flow and its Poisson sampling error:
+\begin{equation}
+  \hat{\lambda} = \frac{N\,v}{G}, \qquad \operatorname{Var}\!\left[\log\hat{\lambda}\right] \approx \frac{1}{N}.
+  \label{eq:little}
+\end{equation}
+With $G = 81.5$\,km, $v = 12$\,knots and the calm-period mean of 88.6 transits per day across all vessel types, one pass sees 13.5 vessels on average and estimates the flow with a 27\% standard error; a 200\,km gate would reduce it to 17\%. A single pass therefore cannot detect a 10\% change in traffic but cannot miss a 90\% one.
+
+\subsection{Fusing radar with AIS}
+
+Radar passes are irregular and noisy; AIS is daily but under-reports when ships go dark. Let $m_t$ be the log of the true flow, $d_t$ the log of the share of traffic that AIS still records, and $c$ the log detection efficiency of the radar. The state-space model is
+\begin{equation}
+\begin{aligned}
+  m_t &= m_{t-1} + \eta_t, & d_t &= d_{t-1} + \zeta_t,\\
+  \log \mathrm{AIS}_t &= m_t + d_t + \varepsilon^{a}_t, & \log \mathrm{SAR}_t &= m_t + c + \varepsilon^{s}_t \quad \text{(pass days)}.
+\end{aligned}
+\label{eq:ssm}
+\end{equation}
+Before the conflict, $d_t$ is fixed at zero, so AIS is treated as truth and calibrates $c$. From the conflict start, both $m_t$ and $d_t$ receive a one-off break innovation and $d_t$ is free to drift, so radar identifies the true flow and $1 - e^{d_t}$ is the estimated dark share. Observation variances follow the Poisson approximation evaluated at the \emph{predicted} count; evaluating them at the observed count over-weights high draws and biases the index upward. The model is estimated with a Kalman filter and Rauch--Tung--Striebel smoother.
+
+\subsection{Validation on simulated data}
+
+\Cref{fig:methods} shows both components on simulated inputs. On synthetic Gamma-clutter scenes with injected targets, the detector reaches precision 0.997 and recall 0.997, its empirical false-alarm rate matches the design rate, and vessel length is estimated with a mean error of $-1$\,m and a dispersion of 9\,m. In 40 simulated chokepoint histories where true flow falls 70\% and AIS reports only 15\% of what still transits, AIS alone understates post-break flow by 86\%; the fused index is off by 1.5\%, and its 90\% band covers the true flow 95\% of the time. When no traffic goes dark, the model does not invent any. Real sea clutter is rougher than the simulation, so detection thresholds must be tuned on a hand-labelled sample of Sentinel-1 scenes before any real count is trusted.
+
+\begin{figure}[!tbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig7_methods.pdf}
+  \caption{Validation of the measurement pipeline on \emph{simulated} data. (A)~The CFAR detector on a synthetic scene with Gamma sea clutter, a masked island and injected vessels. (B)~Fusion of irregular radar snapshots with daily AIS counts. After the break, AIS records 15\% of the vessels that still transit; the fused index tracks the true flow, and the gap between them is the estimated dark share.}
+  \label{fig:methods}
+\end{figure}
+
+% ======================================================================
+\FloatBarrier
+\section{Strike geography and exposure}
+\label{sec:exposure}
+
+Strikes are ACLED events of type \emph{Explosions/Remote violence} with sub-types \emph{Shelling/artillery/missile attack} and \emph{Air/drone strike} in thirteen countries from Lebanon to Oman \citep{raleigh2010}. Events located only to a region are dropped; UCDP and GDELT serve as cross-checks, and news time stamps assign each event to the trading day on which markets could first react. For strike $i$ at location $s_i$, energy assets $j$ of capacity $c_j$ (million barrels of oil equivalent per day) at locations $a_j$, and the main shipping route $R$, exposure is
+\begin{equation}
+  E_i = \sum_j c_j \exp\!\left(-\frac{d(s_i,a_j)^2}{2h^2}\right) + c_R \exp\!\left(-\frac{d(s_i,R)^2}{2h_R^2}\right),
+  \label{eq:exposure}
+\end{equation}
+with great-circle distance $d$, baseline bandwidths $h = 25$\,km and $h_R = 40$\,km, and $c_R = 20$, the approximate flow through the Strait. The daily shock is $S_t = \sum_{i \in t} w_i E_i$ with optional severity weights $w_i$. \Cref{tab:exposure} shows the ordering the index produces on documented sites.
+
+\begin{table}[!htb]
+\centering
+\small
+\begin{threeparttable}
+\caption{Exposure index on documented strike sites. Capacities are indicative placeholders; read the ordering rather than the decimals.}
+\label{tab:exposure}
+\begin{tabularx}{\textwidth}{@{}L{4.3cm}lS[table-format=2.1]Y@{}}
+\toprule
+Strike site & Date & {$E_i$ (mboe/d)} & Driven by \\
+\midrule
+Tankers, Gulf of Oman & 13 Jun 2019 & 20.1 & On the shipping route (0.9\,km) \\
+\rowcolor{rowgray} Abqaiq & 14 Sep 2019 & 7.0 & Oil processing plant \\
+South Pars, Asaluyeh & 14 Jun 2025 & 4.0 & Gas processing \\
+\rowcolor{rowgray} Fujairah anchorage & 12 May 2019 & 2.7 & Terminal 10\,km away; route 94\,km \\
+Haifa refinery & 15 Jun 2025 & 0.3 & Refinery \\
+\rowcolor{rowgray} Al Udeid air base & 23 Jun 2025 & 0.1 & Nearest plant 29\,km away \\
+Nevatim air base & 14 Apr 2024 & 0.0 & No energy asset within reach \\
+\rowcolor{rowgray} Natanz & 13 Jun 2025 & 0.0 & No energy asset within reach \\
+\bottomrule
+\end{tabularx}
+\begin{tablenotes}\footnotesize
+\item \emph{Note.} Exposure is not damage: a strike that hits a refinery and one intercepted above it score the same. Damage is flagged separately from VIIRS thermal anomalies within 2\,km and 48 hours, burn scars in the next cloud-free Sentinel-2 image, and loss of Sentinel-1 coherence over the facility footprint. Bandwidths and $c_R$ are set on a pre-specified grid and are never chosen by looking at price responses.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+% ======================================================================
+\FloatBarrier
+\section{Identification}
+\label{sec:ident}
+
+\Cref{fig:dag} summarises the strategy. A strike can raise prices by removing flow (the path through $\varphi$ and $\theta$) or by raising the premium for bearing risk on flow that continues (the direct path $\delta$). Satellites observe the first path; the second is recovered as the remainder.
+
+\begin{figure}[!tbp]
+\centering
+\begin{tikzpicture}[
+    node distance=6mm and 11mm,
+    box/.style={draw=ink!55, line width=0.6pt, rounded corners=2.5pt, align=center,
+                minimum width=27mm, minimum height=11mm, font=\small, fill=white},
+    key/.style={box, draw=navy, line width=1.1pt, fill=boxblue},
+    lab/.style={font=\footnotesize\itshape, text=muted},
+    arr/.style={-{Stealth[length=2.4mm]}, line width=0.65pt, draw=ink!70}]
+  \node[box] (strike) {\textbf{Strike}\\[-1pt]{\footnotesize\color{muted}geocoded, day $t$}};
+  \node[box, right=of strike] (exp) {\textbf{Exposure} $E_i$\\[-1pt]{\footnotesize\color{muted}capacity in reach}};
+  \node[key, above right=4mm and 11mm of exp] (flow) {\textbf{Transit flow}\\[-1pt]{\footnotesize\color{muted}satellite index}};
+  \node[box, below right=4mm and 11mm of exp] (risk) {\textbf{Risk premium}\\[-1pt]{\footnotesize\color{muted}not observed}};
+  \node[box, below right=4mm and 11mm of flow] (price) {\textbf{Energy prices}\\[-1pt]{\footnotesize\color{muted}Brent, Dubai, TTF}};
+  \node[box, above=7mm of flow] (iv) {\textbf{Weather, outages}\\[-1pt]{\footnotesize\color{muted}move flow, not risk}};
+  \draw[arr] (strike) -- (exp);
+  \draw[arr] (exp.east) -- ++(4mm,0) |- node[lab, pos=0.25, left] {$\varphi$} (flow.west);
+  \draw[arr] (exp.east) -- ++(4mm,0) |- node[lab, pos=0.25, left] {$\delta$} (risk.west);
+  \draw[arr] (flow.east) -- ++(4mm,0) |- node[lab, pos=0.25, right] {$\theta$} (price.west);
+  \draw[arr] (risk.east) -- ++(4mm,0) |- (price.west);
+  \draw[arr, dashed] (iv) -- node[lab, right] {instrument for $\theta$} (flow);
+\end{tikzpicture}
+\caption{Two channels from strike to price. The highlighted node is what the thesis measures from orbit. The physical channel is the product $\varphi\theta$; the risk-premium channel is the total response minus $\varphi\theta$.}
+\label{fig:dag}
+\end{figure}
+
+\paragraph{Step 1: event study.} With $r_t$ the daily log return in percent, abnormal returns are measured against the mean over trading days $-130$ to $-11$ \citep{mackinlay1997}:
+\begin{equation}
+  AR_t = r_t - \bar{r}_{\mathrm{est}}, \qquad CAR(a,b) = \sum_{t=a}^{b} AR_t .
+\end{equation}
+Day 0 is the first close after the event, so weekend strikes map to Monday. Each event receives a Student-$t$ $p$-value from its estimation window and a placebo $p$-value: the share of about 2,600 non-event trading days since 2015 with a $|CAR|$ at least as large. Every event is reported individually because events are few.
+
+\paragraph{Step 2: dose and dynamics.} A cross-section relates abnormal returns to exposure, verified damage $D_i$ and controls $X_i$, $CAR_i = \gamma_0 + \gamma_1 E_i + \gamma_2 D_i + \gamma_3' X_i + u_i$. Local projections \citep{jorda2005} trace the response of each price $y$ (in $100\times\log$) to the exposure shock:
+\begin{equation}
+  y_{t+h} - y_{t-1} = \alpha_h + \beta_h S_t + \sum_{l=1}^{p} \Gamma_{h,l}' W_{t-l} + e_{t+h}, \qquad h = 0,\dots,H,
+  \label{eq:lp}
+\end{equation}
+where $W$ contains lagged returns, the shock, the flow index, the geopolitical risk index \citep{caldara2022}, the dollar and implied volatility. Inference uses Newey--West errors, with lag-augmented robust errors as a check \citep{montiel2021}. In 200 Monte Carlo replications of a known autoregressive response, the estimator's bias is below 0.012 at every horizon and its nominal 90\% intervals cover the truth 88--95\% of the time.
+
+\paragraph{Step 3: channel decomposition.} The total response splits into a physical and a risk-premium part,
+\begin{equation}
+  \underbrace{\beta_h}_{\text{total}} = \underbrace{\delta_h}_{\text{risk premium}} + \underbrace{\textstyle\sum_{k=0}^{h} \Delta\varphi_k\,\theta_{h-k}}_{\text{physical flow}} .
+  \label{eq:decomp}
+\end{equation}
+The flow response $\varphi$ comes from \cref{eq:lp} with the satellite flow index as the outcome. The price response to lost flow, $\theta$, is identified with external instruments \citep{stockwatson2018}: flow disturbances that carry no war news, such as fog, storms and scheduled terminal outages. Asset prices offer an instrument-free cross-check, because the two channels load differently on them: physical shortage steepens prompt futures spreads, lifts tanker freight and widens the premium of seaborne over landlocked crude, whereas pure risk raises option-implied volatility.
+
+\paragraph{Hypotheses.} \Cref{tab:hyp} states five testable hypotheses with the result that would falsify each.
+
+\begin{table}[!tbp]
+\centering
+\small
+\caption{Hypotheses and falsification criteria.}
+\label{tab:hyp}
+\begin{tabularx}{\textwidth}{@{}lYL{3.9cm}L{3.6cm}@{}}
+\toprule
+& Hypothesis & Test & Falsified if \\
+\midrule
+H1 & The radar index tracks AIS before 28 Feb 2026 and exceeds it afterwards & Weekly correlation before; radar minus AIS after & Correlation $< 0.8$ before, or no positive gap after \\
+\rowcolor{rowgray} H2 & Abnormal returns rise with strike exposure & Cross-section of CAR on $E_i$, permutation inference & Slope zero or negative \\
+H3 & Price effects without observed flow loss revert within 10 trading days; those with flow loss do not & Local projections split by flow response & Both groups persist, or both revert \\
+\rowcolor{rowgray} H4 & Responses order Dubai/Oman $\geq$ Brent $>$ WTI; LNG reacts to strikes on gas assets & Panel event study across benchmarks & WTI responds as much as Dubai/Oman \\
+H5 & The radar--AIS gap predicts freight and prompt spreads beyond AIS & Predictive regressions, out-of-sample $R^2$ & No incremental predictive power \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ======================================================================
+\FloatBarrier
+\section{Preliminary evidence}
+\label{sec:evidence}
+
+On public data available today, only the episode that stopped the tankers produced a lasting rise in Brent. All figures in this section are computed from EIA prices and IMF PortWatch transits; nothing is simulated.
+
+\begin{figure}[!tbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig4_timeline.pdf}
+  \caption{Hormuz tanker transits and Brent, January 2023 to November 2026. Dashed lines mark the onsets of four Israel--Iran episodes; the shaded period begins on 28 February 2026. In (A) the thin line is daily and the thick line a 7-day centred mean.}
+  \label{fig:timeline}
+\end{figure}
+
+\Cref{fig:timeline} shows the two series. Transits fluctuate between 30 and 70 tankers a day through 2023--2025 with no visible response to the 2024 and June 2025 exchanges, then collapse at the end of February 2026. Brent's response mirrors that asymmetry.
+
+\begin{figure}[!tbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig5_event_study.pdf}
+  \caption{Cumulative abnormal returns of Brent around six episode onsets. The grey band is the 5th--95th percentile range of the same statistic on about 2,600 non-event trading days since 2015. Constant-mean model with an estimation window of trading days $-130$ to $-11$.}
+  \label{fig:es}
+\end{figure}
+
+\Cref{fig:es,fig:episodes} and \cref{tab:es} report the event study. Three findings stand out.
+
+\begin{itemize}
+  \item \textbf{Day-0 jumps do not discriminate.} Brent rose 11.1, 7.2 and 7.9 log points on the first trading day after Abqaiq (2019), June 2025 and the 2026 war; all three are significant against placebo days. Only one involved any loss of flow.
+  \item \textbf{Persistence does.} Ten trading days later, Abqaiq and June 2025 were within one point of zero. The 2026 episode stood at $+34.4$ (placebo $p = 0.014$) and reached $+52.8$ by day 20 ($p = 0.015$), a 70\% rise in price.
+  \item \textbf{Flows moved only once.} First-week transit changes of $-5$ to $-13\%$ in 2024 and 2025 lie within the calm-period noise band of $\pm23\%$; the 2026 fall of 97\% does not. The premium of Brent over WTI widened by 12.83 USD in 2026 and by less than 1 USD, or narrowed, in every other episode.
+\end{itemize}
+
+\begin{figure}[!tbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig6_episodes.pdf}
+  \caption{Episode summary. (A)~Brent's day-0 abnormal return (open circle) against its cumulative abnormal return after 20 trading days (filled circle), with placebo $p$-values. (B)~Change in mean daily tanker transits in the week after onset relative to days $-35$ to $-8$. The grey band is the 5th--95th percentile of the same statistic over the calm period.}
+  \label{fig:episodes}
+\end{figure}
+
+\begin{table}[!tbp]
+\centering
+\small
+\begin{threeparttable}
+\caption{Brent abnormal returns and Hormuz transit changes by episode.}
+\label{tab:es}
+\begin{tabular}{@{}l l S[table-format=+2.1] S[table-format=+2.1] S[table-format=1.3] S[table-format=+3.1] S[table-format=+2.2]@{}}
+\toprule
+& & \multicolumn{3}{c}{Brent CAR (log points, \%)} & {Transits} & {Brent--WTI} \\
+\cmidrule(lr){3-5}
+Episode & Day 0 & {Day 0} & {Day 20} & {$p$, day 20} & {wk 1 (\%)} & {$\Delta$ USD} \\
+\midrule
+2026 war & 2 Mar 2026 & 7.9 & 52.8 & 0.015 & -96.6 & 12.83 \\
+\rowcolor{rowgray} June 2025 war & 13 Jun 2025 & 7.2 & 4.3 & 0.718 & -5.1 & 0.40 \\
+Iran's 2nd attack on Israel & 1 Oct 2024 & 4.1 & 0.9 & 0.946 & -12.8 & 0.70 \\
+\rowcolor{rowgray} Iran's 1st attack on Israel & 15 Apr 2024 & -2.5 & -13.4 & 0.247 & -7.0 & -5.28 \\
+Soleimani; Ain al-Asad & 3 Jan 2020 & 2.9 & -16.6 & 0.158 & {--} & -1.94 \\
+\rowcolor{rowgray} Abqaiq and Khurais & 16 Sep 2019 & 11.1 & -2.7 & 0.829 & {--} & -1.25 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item \emph{Notes.} $p$ is the placebo $p$-value. Transits: change in mean daily tanker transits, days $+1$ to $+7$ against days $-35$ to $-8$; dashes mark episodes before the PortWatch snapshot. Brent--WTI: change in the spot spread from day $-1$ to day $+20$. The January 2020 day-20 figure also absorbs early pandemic news.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+Two further results frame the identification problem. First, ordinary transit noise carries no price signal: over 164 calm weeks, a 10\% fall in weekly tanker transits is followed by a contemporaneous Brent change of $+0.14\%$ (90\% interval $-0.28$ to $+0.56$), and the correlation of weekly changes is 0.003. Identification must therefore come from disruptions, not day-to-day variation. Second, within the 34 weeks of the closure, Brent and tanker transits are negatively correlated in levels ($-0.61$), and in June 2026 the price fall began about two weeks before the brief recovery in AIS-visible transits. Transits then fell back below three per day by late July, and Brent rose again, to 135.51 on 2 October.
+
+These patterns are what H3 predicts, but six events, one with flow loss, test nothing. The flows are AIS-based, the very measure the design treats as unreliable in conflict; whether the June price fall anticipated a reopening or reflected dark traffic already under way is the question the radar index is built to answer.
+
+% ======================================================================
+\FloatBarrier
+\section{Threats to validity}
+\label{sec:threats}
+
+\Cref{tab:threats} lists the principal threats and responses. Three deserve emphasis. Sentinel-1 passes at fixed local times near dawn and dusk, so convoys timed to daylight could be missed; mid-morning optical counts and tasked commercial radar address this. The calibration treats pre-war AIS as complete, so chronic dark traffic would bias it; results are reported under an assumed 5--15\% pre-war dark share. And one episode dominates the sample, so every specification is reported with placebo inference and leave-one-episode-out estimates.
+
+\begin{table}[!tbp]
+\centering
+\small
+\caption{Threats to validity and responses.}
+\label{tab:threats}
+\begin{tabularx}{\textwidth}{@{}L{3.1cm}YY@{}}
+\toprule
+Threat & Why it matters & Response \\
+\midrule
+Fixed overpass times & Sentinel-1 images near dawn and dusk; daylight convoys missed & Sentinel-2 and PlanetScope counts; tasked commercial SAR \\
+\rowcolor{rowgray} Revisit gaps & 2--6 days between passes hide short disruptions & State-space fusion; weekly index as the headline \\
+False alarms & Platforms, islets, wind fronts and azimuth ghosts mimic vessels & Static mask, length limits, VV confirmation, labelled sample \\
+\rowcolor{rowgray} Vessel type & 10\,m radar cannot tell a tanker from a bulk carrier & All-vessel and large-vessel indices; optical classification \\
+Speed assumption & Escorted or slow convoys break the count-to-flow conversion & Wake-based speeds; queue stocks as a second signal \\
+\rowcolor{rowgray} Dominant episode & Pooled estimates reflect 2026 alone & Placebo inference; leave-one-out; every event reported \\
+Confounding news & OPEC decisions, stock releases and ceasefire talks coincide with strikes & Narrow windows; intraday futures; drop overlapping days \\
+\rowcolor{rowgray} Event-data bias & Coverage and precision vary by country and period & Cross-source agreement; geo-precision filter \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ======================================================================
+\FloatBarrier
+\section{Ethics, data availability and limitations}
+\label{sec:ethics}
+
+\paragraph{Dual use.} Counting ships in a war zone could help someone target them. The project therefore releases only aggregate counts and indices, never vessel-level positions, tracks or identities, and nothing less than 30 days after the pass it describes. Strike records come only from published event datasets.
+
+\paragraph{Neutrality.} Attribution fields repeat what each source reports, including where claims are disputed. Place names and boundaries follow Natural Earth and imply no position on any territorial question.
+
+\paragraph{Limitations of this version.} No Sentinel-1 scene has yet been processed: the detector and fusion model are validated on simulated data only, and the Earth Engine pipeline has not been executed. The strike layer in \cref{fig:region,fig:gulf,fig:hormuz} is an illustrative reference compiled by the author; its 2026 sites are unverified, and the analysis layer will be built from ACLED. Infrastructure capacities are indicative and will be replaced from Global Energy Monitor and EIA records. The preliminary evidence rests on AIS counts.
+
+\paragraph{Data and code.} Code, configuration, data snapshots and the scripts that regenerate every table and figure are available from the author as the \texttt{hormuz-orbital} repository (\cref{app:code}). ACLED records are not redistributed.
+
+% ======================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+Chokepoint risk is usually measured from prices and words. This design measures it from orbit, by counting the ships themselves. Public data already show that the one recent episode in which tankers stopped moving is the one in which oil prices stayed high, while strikes that left traffic intact produced jumps that faded within two weeks. A radar-based transit index, an exposure-weighted strike treatment and an instrumented decomposition can turn that pattern into an estimate of how much of a war's price premium is barrels lost and how much is fear.
+
+\FloatBarrier
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+% ======================================================================
+\appendix
+\section{Code and reproducibility}
+\label{app:code}
+
+The repository rebuilds every table and figure in this paper with one command and passes 14 unit tests. \Cref{tab:code} lists its components and their status.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Repository components.}
+\label{tab:code}
+\begin{tabularx}{\textwidth}{@{}L{4.1cm}YL{4.1cm}@{}}
+\toprule
+File & Function & Status \\
+\midrule
+\texttt{s1\_cfar.py} & CFAR detector, object measurement, synthetic scenes & Tested on simulated scenes \\
+\rowcolor{rowgray} \texttt{s1\_gee\_pipeline.py} & Earth Engine scene selection, masking, detection, export & Not run (needs an account) \\
+\texttt{flow\_index.py} & Little's law, radar--AIS fusion, export processing & Tested on simulated traffic \\
+\rowcolor{rowgray} \texttt{strike\_exposure.py} & Exposure index and daily shock & Tested; run on reference layer \\
+\texttt{data\_sources.py} & Loaders for prices, PortWatch and ACLED & Snapshot paths run \\
+\rowcolor{rowgray} \texttt{event\_study.py} & Abnormal returns, $t$ and placebo inference & Tested; run on Brent \\
+\texttt{local\_projections.py} & Impulse responses, HAC or lag-augmented & Monte Carlo checked; run \\
+\rowcolor{rowgray} \texttt{run\_all.py} & Rebuilds all tables and figures & Run end to end \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Pre-specified robustness grid}
+\label{app:robust}
+
+All of the following are fixed before any price regression is estimated and reported in full: estimation windows of 60, 130 and 250 trading days; exposure bandwidths $h \in \{10, 25, 50\}$\,km; Hormuz-dependent assets only; market-model returns with equity, dollar and copper factors; weekly instead of daily data; and every specification on both spot and front-month futures prices.
+
+\end{document}

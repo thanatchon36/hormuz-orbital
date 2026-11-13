@@ -1,0 +1,164 @@
+\begin{thebibliography}{25}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Arslanalp et~al.(2021)Arslanalp, Koepke, and Verschuur]{arslanalp2021}
+Serkan Arslanalp, Robin Koepke, and Jasper Verschuur.
+\newblock Tracking trade from space: An application to {P}acific {I}sland
+  countries.
+\newblock IMF Working Paper 21/225, International Monetary Fund, 2021.
+
+\bibitem[Baumeister and Hamilton(2019)]{baumeister2019}
+Christiane Baumeister and James~D. Hamilton.
+\newblock Structural interpretation of vector autoregressions with incomplete
+  identification: Revisiting the role of oil supply and demand shocks.
+\newblock \emph{American Economic Review}, 109\penalty0 (5):\penalty0
+  1873--1910, 2019.
+
+\bibitem[Caldara and Iacoviello(2022)]{caldara2022}
+Dario Caldara and Matteo Iacoviello.
+\newblock Measuring geopolitical risk.
+\newblock \emph{American Economic Review}, 112\penalty0 (4):\penalty0
+  1194--1225, 2022.
+
+\bibitem[Cerdeiro et~al.(2020)Cerdeiro, Komaromi, Liu, and Saeed]{cerdeiro2020}
+Diego~A. Cerdeiro, Andras Komaromi, Yang Liu, and Mamoon Saeed.
+\newblock World seaborne trade in real time: A proof of concept for building
+  {AIS}-based nowcasts from scratch.
+\newblock IMF Working Paper 20/57, International Monetary Fund, 2020.
+
+\bibitem[Crisp(2004)]{crisp2004}
+David~J. Crisp.
+\newblock The state-of-the-art in ship detection in synthetic aperture radar
+  imagery.
+\newblock Research Report DSTO-RR-0272, Defence Science and Technology
+  Organisation, 2004.
+
+\bibitem[Donaldson and Storeygard(2016)]{donaldson2016}
+Dave Donaldson and Adam Storeygard.
+\newblock The view from above: Applications of satellite data in economics.
+\newblock \emph{Journal of Economic Perspectives}, 30\penalty0 (4):\penalty0
+  171--198, 2016.
+
+\bibitem[Greidanus et~al.(2017)Greidanus, Alvarez, Santamaria, Thoorens,
+  Kourti, and Argentieri]{greidanus2017}
+Harm Greidanus, Marlene Alvarez, Carlos Santamaria, Fran{\c{c}}ois-Xavier
+  Thoorens, Naouma Kourti, and Pietro Argentieri.
+\newblock The {SUMO} ship detector algorithm for satellite radar images.
+\newblock \emph{Remote Sensing}, 9\penalty0 (3):\penalty0 246, 2017.
+
+\bibitem[Henderson et~al.(2012)Henderson, Storeygard, and Weil]{henderson2012}
+J.~Vernon Henderson, Adam Storeygard, and David~N. Weil.
+\newblock Measuring economic growth from outer space.
+\newblock \emph{American Economic Review}, 102\penalty0 (2):\penalty0
+  994--1028, 2012.
+
+\bibitem[{International Monetary Fund}(2026)]{portwatch}
+{International Monetary Fund}.
+\newblock {PortWatch}: Daily chokepoint transit calls.
+\newblock \url{https://portwatch.imf.org}, API responses of 28 October 2026,
+  2026.
+\newblock Accessed 10 November 2026.
+
+\bibitem[Jord{\`a}(2005)]{jorda2005}
+{\`O}scar Jord{\`a}.
+\newblock Estimation and inference of impulse responses by local projections.
+\newblock \emph{American Economic Review}, 95\penalty0 (1):\penalty0 161--182,
+  2005.
+
+\bibitem[K{\"a}nzig(2021)]{kanzig2021}
+Diego~R. K{\"a}nzig.
+\newblock The macroeconomic effects of oil supply news: Evidence from {OPEC}
+  announcements.
+\newblock \emph{American Economic Review}, 111\penalty0 (4):\penalty0
+  1092--1125, 2021.
+
+\bibitem[Kilian(2009)]{kilian2009}
+Lutz Kilian.
+\newblock Not all oil price shocks are alike: Disentangling demand and supply
+  shocks in the crude oil market.
+\newblock \emph{American Economic Review}, 99\penalty0 (3):\penalty0
+  1053--1069, 2009.
+
+\bibitem[Kilian and Murphy(2014)]{kilianmurphy2014}
+Lutz Kilian and Daniel~P. Murphy.
+\newblock The role of inventories and speculative trading in the global market
+  for crude oil.
+\newblock \emph{Journal of Applied Econometrics}, 29\penalty0 (3):\penalty0
+  454--478, 2014.
+
+\bibitem[Little(1961)]{little1961}
+John D.~C. Little.
+\newblock A proof for the queuing formula: {$L = \lambda W$}.
+\newblock \emph{Operations Research}, 9\penalty0 (3):\penalty0 383--387, 1961.
+
+\bibitem[MacKinlay(1997)]{mackinlay1997}
+A.~Craig MacKinlay.
+\newblock Event studies in economics and finance.
+\newblock \emph{Journal of Economic Literature}, 35\penalty0 (1):\penalty0
+  13--39, 1997.
+
+\bibitem[Montiel~Olea and Plagborg-M{\o}ller(2021)]{montiel2021}
+Jos{\'e}~Luis Montiel~Olea and Mikkel Plagborg-M{\o}ller.
+\newblock Local projection inference is simpler and more robust than you think.
+\newblock \emph{Econometrica}, 89\penalty0 (4):\penalty0 1789--1823, 2021.
+
+\bibitem[Mueller et~al.(2021)Mueller, Groeger, Hersh, Matranga, and
+  Serrat]{mueller2021}
+Hannes Mueller, Andre Groeger, Jonathan Hersh, Andrea Matranga, and Joan
+  Serrat.
+\newblock Monitoring war destruction from space using machine learning.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 118\penalty0
+  (23):\penalty0 e2025400118, 2021.
+
+\bibitem[Mukherjee et~al.(2021)Mukherjee, Panayotov, and Shon]{mukherjee2021}
+Abhiroop Mukherjee, George Panayotov, and Janghoon Shon.
+\newblock Eye in the sky: Private satellites and government macro data.
+\newblock \emph{Journal of Financial Economics}, 141\penalty0 (1):\penalty0
+  234--254, 2021.
+
+\bibitem[{Natural Earth}(2026)]{naturalearth}
+{Natural Earth}.
+\newblock 1:10m cultural and physical vectors.
+\newblock \url{https://www.naturalearthdata.com}, 2026.
+\newblock Accessed 10 November 2026.
+
+\bibitem[Paolo et~al.(2024)]{paolo2024}
+Fernando~S. Paolo et~al.
+\newblock Satellite mapping reveals extensive industrial activity at sea.
+\newblock \emph{Nature}, 625:\penalty0 85--91, 2024.
+
+\bibitem[Raleigh et~al.(2010)Raleigh, Linke, Hegre, and Karlsen]{raleigh2010}
+Clionadh Raleigh, Andrew Linke, H{\aa}vard Hegre, and Joakim Karlsen.
+\newblock Introducing {ACLED}: An armed conflict location and event dataset.
+\newblock \emph{Journal of Peace Research}, 47\penalty0 (5):\penalty0 651--660,
+  2010.
+
+\bibitem[Stock and Watson(2018)]{stockwatson2018}
+James~H. Stock and Mark~W. Watson.
+\newblock Identification and estimation of dynamic causal effects in
+  macroeconomics using external instruments.
+\newblock \emph{The Economic Journal}, 128\penalty0 (610):\penalty0 917--948,
+  2018.
+
+\bibitem[Torres et~al.(2012)]{torres2012}
+Ramon Torres et~al.
+\newblock {GMES} {S}entinel-1 mission.
+\newblock \emph{Remote Sensing of Environment}, 120:\penalty0 9--24, 2012.
+
+\bibitem[{U.S. Energy Information Administration}(2026)]{eia_spot}
+{U.S. Energy Information Administration}.
+\newblock Europe {B}rent and {WTI} spot prices, daily.
+\newblock \url{https://www.eia.gov/dnav/pet/pet_pri_spt_s1_d.htm}, retrieved
+  via \url{https://github.com/datasets/oil-prices}, 2026.
+\newblock Accessed 10 November 2026.
+
+\bibitem[Verschuur et~al.(2022)Verschuur, Koks, and Hall]{verschuur2022}
+Jasper Verschuur, Elco~E. Koks, and Jim~W. Hall.
+\newblock Ports' criticality in international trade and global supply-chains.
+\newblock \emph{Nature Communications}, 13:\penalty0 4351, 2022.
+
+\end{thebibliography}
